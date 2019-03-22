@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HeadshotScreen from './HeadshotScreen';
 import HeadshotHeader from './HeadshotHeader';
@@ -12,6 +12,7 @@ class HeadshotContainer extends Component {
     return (
       <MuiThemeProvider theme={themeMaterial}>
         <HeadshotScreen Layout={HeadshotHeader} children={children}>
+          {children}
         </HeadshotScreen>
       </MuiThemeProvider>
     );

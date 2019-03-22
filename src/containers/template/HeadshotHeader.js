@@ -218,7 +218,7 @@ class HeadshotHeader extends Component {
             </Hidden>
 
             <div className={classes.grow}/>
-             <div>
+             {/* <div>
                 <Button color="inherit" onClick={this.handleClick}>
                   <IconButton
                     aria-owns={openAnchor ? 'menu-appbar' : null}
@@ -228,7 +228,7 @@ class HeadshotHeader extends Component {
                       <AccountCircle />
                   </IconButton>
                 </Button>
-              </div>
+              </div> */}
   
           </Toolbar>
         </AppBar>
@@ -247,9 +247,9 @@ class HeadshotHeader extends Component {
               alt="Logo"
               src={require('../../images/logo.jpg')} 
             />
-            {/* <IconButton onClick={this.handleDrawerClose}>
+            <IconButton onClick={this.handleDrawerClose}>
               {<ChevronLeftIcon />}
-            </IconButton> */}
+            </IconButton>
           </div>
           <Divider />
           <List>
@@ -262,10 +262,6 @@ class HeadshotHeader extends Component {
             {this.renderDrawerListItem('Ratings', '/client/my_rate')} */}
           </List>
         </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {children}
-        </main>
       </div>
     )
   }

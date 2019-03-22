@@ -37,6 +37,7 @@ export const materialStyles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    // maxHeight: 64
   },
   appBarShift: {
     marginLeft: drawerWidth,
