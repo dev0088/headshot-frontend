@@ -565,7 +565,7 @@ class ImageMapEditor extends Component {
         } = this.handlers;
         const action = (
             <React.Fragment>
-                <CommonButton
+                {/* <CommonButton
                     className="rde-action-btn"
                     shape="circle"
                     icon="file-download"
@@ -601,7 +601,7 @@ class ImageMapEditor extends Component {
                             onClick={onUpload}
                         />
                     )
-                }
+                } */}
                 <CommonButton
                     className="rde-action-btn"
                     shape="circle"

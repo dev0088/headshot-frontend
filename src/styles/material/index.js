@@ -2,176 +2,37 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import grey from '@material-ui/core/colors/grey';
 import blue from '@material-ui/core/colors/blue';
-import yellow from '@material-ui/core/colors/yellow';
-import green from '@material-ui/core/colors/green';
-import orange from '@material-ui/core/colors/orange';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const drawerWidth = 240;
+const fontFamily = "'Clarkson',Helvetica,sans-serif";
+//'-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji'
+//"Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace";
+//"'Open Sans', sans-serif"; 
 
-const fontFamily = '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji'
-//'"Gotham SSm", "Helvetica", "Arial", sans-serif';
 
 export const materialStyles = theme => ({
-  '@global': {
-    body: {
-      display: 'flex',
-      backgroundColor: theme.palette.white.light,//'#e4e5e6',
-      position: 'absolute',
-      width: '100% !important',
-      height: '100% !important',
-      display: 'flex'
-    }
-  },
   root: {
+    flexGrow: 1,
     display: 'flex',
-    backgroundColor: '#e4e5e6',
-    position: 'absolute',
-    width: '100% !important',
-    // height: '100% !important',
-    display: 'flex'
+    flexWrap: 'wrap',
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    // maxHeight: 64
+  button: {
+    margin: theme.spacing.unit,
   },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    // width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  
-  h4NoMargin: {
-    color: 'rgba(0, 0, 0, 0.87)',
-    fontSize: '2.125rem',
-    ffontFamily: fontFamily,
-    fontWeight: 400,
-    lineHeight: 1.17,
-    letterSpacing: '0.00735em',
-    marginBlockStart: '0em',
-    marginBlockEnd: '0em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px',
-  },
-  h4SmallMargin: {
-    color: 'rgba(0, 0, 0, 0.87)',
-    fontSize: '2.125rem',
-    ffontFamily: fontFamily,
-    fontWeight: 400,
-    lineHeight: 1.17,
-    letterSpacing: '0.00735em',
-    marginBlockStart: '0.5em',
-    marginBlockEnd: '0.5em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px',
-  },
-  h4: {
-    color: 'rgba(0, 0, 0, 0.87)',
-    fontSize: '2.125rem',
-    ffontFamily: fontFamily,
-    fontWeight: 400,
-    lineHeight: 1.17,
-    letterSpacing: '0.00735em',
-    marginBlockStart: '1.33em',
-    marginBlockEnd: '1.33em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px',
-  },
-  h5: {
-    display: 'block',
-    fontSize: '0.83em',
-    marginBlockStart: '1.67em',
-    marginBlockEnd: '1.67em',
-    marginInlineEtart: '0px',
-    marginInlineEnd: '0px',
-    fontWeight: 'bold',
-  },
-  underlineText: {
-    textDecoration: 'underline',
-  },
-  italicText: {
-    fontStyle: 'italic',
-  },
-  inlineText: {
-    display: 'inline'
-  },
-  centerText: {
-    textAlign: 'center',
-  },
-  leftText: {
-    textAlign: 'left',
-  },
-  rightText: {
-    textAlign: 'right',
-  },
-  fullWidth: {
-    width: '100%'
-  },
-  bold: {
-    fontWeight: '600!important',
-  },
-  red: {
-    color: theme.palette.red.main
-  },
-  white: {
-    color: theme.palette.white.main
-  },
-  blue: {
-    color: theme.palette.blue.main
-  },
-  green: {
-    color: theme.palette.green.main
-  },
-  yellow: {
-    color: theme.palette.yellow.main
+  paper: {
+    height: 140,
+    width: 100,
   },
   progress: {
     margin: theme.spacing.unit * 2,
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+  typography: {
+    fontFamily: fontFamily,
+    textTransform: "none",
   },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    backgroundColor: theme.palette.primary.main,
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing.unit * 7 + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9 + 1,
-    },
-    backgroundColor: theme.palette.primary.main,
+  buttonIcon: {
+    margin: 0,
   },
   brandImage: {
     height: 40,
@@ -187,42 +48,6 @@ export const materialStyles = theme => ({
     display: 'inline-block',
     whiteSpace: 'nowrap',
     marginRight: '18px',
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    // padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  menuItemText: {
-    color: theme.palette.white.main,
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    paddingTop: '3px',
-    textTransform: 'none',
-    display: 'inline-block',
-    whiteSpace: 'nowrap',
-    marginRight: '18px',
-  },
-  topbarMenuItemTitle: {
-    paddingLeft: '8px',
-    paddingRight: '8px',
-    '&:hover': {
-      color: theme.palette.grey.light,
-    },
-  },
-  topbarDynamicShow: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  topbarMenuItem: {
-    display: 'inline-block'
-  },
-  grow: {
-    flexGrow: 1,
   },
   search: {
     position: 'relative',
@@ -267,6 +92,143 @@ export const materialStyles = theme => ({
       },
     },
   },
+  selectedButton: {
+    display: 'block!important',
+    width: '100%',
+    borderRadius: '13px!important',
+  },
+  selectedButtonTitle: {
+    color: theme.button.primaryColor,
+    fontSize: theme.button.primaryFontSize,
+    fontWeight: 600,
+    paddingTop: '0.8rem',
+    paddingBottom: '0.8rem',
+    lineHeight: 1.3,
+    textTransform: 'none',
+  },
+  wizardSettingHeaderTitle: {
+    whiteSpace: 'nowrap'
+  },
+  wizardSettingHeaderButton: {
+    display: 'block!important',
+    borderRadius: '4px!important',
+    marginLeft: '5px',
+    marginRight: '5px'
+  },
+  wizardSettingHeaderButtonsGroupGridItem: {
+    display: 'inherit'
+  },
+  wizardSettingHeaderText: {
+    color: theme.button.primaryColor,
+    fontWeight: 400,
+    textTransform: 'none'
+  },
+  wizardSettingSubTitle: {
+    fontSize: '1.45rem',
+    fontWeight: 600,
+    textAlign: 'center',
+    color: 'rgba(0, 0, 0, 0.87)'
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: theme.spacing.unit / 4,
+  },
+  control: {
+    padding: theme.spacing.unit * 2,
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 190,
+    width: '100%'
+  },
+  flatPrimary: {
+    color: theme.palette.white.main,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`,
+  },
+  groupMenuItem: {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)'
+  },
+  input: {
+    display: 'none',
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      color: red[800],
+    },
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  menuitem: {
+    color: theme.palette.white.main
+  },
+  menuItemText: {
+    color: theme.palette.white.main,
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    paddingTop: '3px',
+    textTransform: 'none',
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    marginRight: '18px',
+  },
+  drawerMenuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  drawerBandImage: {
+    paddingTop: '0.3rem',
+    width: '100px',
+    textAlign: 'left',
+    marginLeft: '10px',
+    marginRight: 'auto'
+  },
+  topbarMenuItemTitle: {
+    paddingLeft: '8px',
+    paddingRight: '8px',
+    '&:hover': {
+      color: theme.palette.grey.light,
+    },
+  },
+  topbarDynamicShow: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  topbarMenuItem: {
+    display: 'inline-block'
+  },
   avatarImage: {
     width: '40px',
     height: '40px',
@@ -279,52 +241,92 @@ export const materialStyles = theme => ({
     fontWeight: 400,
     paddingLeft: '7px'
   },
-  drawerBandImage: {
-    paddingTop: '0.3rem',
-    width: '100px',
-    textAlign: 'left',
-    marginLeft: '10px',
-    marginRight: 'auto'
+  optionMenuItem: {
+    backgroundColor: 'rgba(0, 0, 0, 0)!important',
+    paddingLeft: '40px',
   },
-  drawerBandText: {
-    textAlign: 'left',
-    marginLeft: '10px',
-    marginRight: 'auto',
-    fontSize: '1.35rem',
-    fontWeight: 900,
-    color: theme.palette.white.light
+  paperContent: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
-  drawerBackground: {
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    zIndex: '1',
-    display: 'block',
-    position: 'absolute',
-    backgroundSize: 'cover',
-    backgroundImage: 'url(/static/media/sidebar-2.310509c9.jpg)',
-    backgroundPosition: 'center center',
-    '&:after': {
-      width: '100%',
-      height: '100%',
-      zIndex: '3',
-      content: "",
-      display: 'block',
-      opacity: '.8',
-      position: 'absolute',
-      background: '#000'
-    }
+  paperDescription: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
-  drawerListIcon: {
-    color: theme.palette.white.light
+  slide: {
+    padding: 10,
   },
-  drawerListText: {
-    color: theme.palette.white.light
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+  searchTextField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  descriptionUl: {
+    paddingInlineStart: '15px',
+  },
+  olParentheses: {
+    counterReset: 'list',
+    paddingInlineStart: '0px',
+    '& > li': {
+      listStyle: 'none',
+      '&:before': {
+        textAlign: 'center',
+        content: `counter(list) ") "`,
+        counterIncrement: 'list',
+        paddingRight: '0.5rem'
+      }
+    },
+  },
+  financeTable: {
+    border: `2px solid ${theme.palette.black.main}`,
+    padding: `10px!important`
+  },
+  financeTableTitle: {
+    color: theme.palette.black.main,
+    fontSize: '1rem',
+    fontWeight: 600,
+    lineHeight: '1.46429em',
+  },
+  financeTableContentText: {
+    color: theme.palette.black.main,
+    fontSize: '0.85rem',
+    fontWeight: 100,
+    lineHeight: '0.8em',
+  },
+  financeIconGridItem: {
+    textAlign: 'right',
+    paddingRight: '0px!important',
+    verticalAlign: 'top',
+    paddingTop: '10px!important',
+    marginBottom: 'auto'
+  },
+  financeIcon: {
+    fontSize: '2rem',
+    fontWeight: '700',
+    paddingRight: '0px',
+    textAlign: 'right',
+    verticalAlign: 'top',
+    marginTop: '0px',
+    marginBottom: 'auto',
+    color: theme.palette.black.main
+  },
+  auditionTableTitle: {
+    color: theme.palette.black.main,
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    lineHeight: '1.46429em',
+  },
+  auditionTableContentText: {
+    color: theme.palette.black.main,
+    fontSize: '1rem',
+    fontWeight: 400,
+    lineHeight: '1em',
   },
   descriptionText: {
     color: '#2a3134',
@@ -333,13 +335,82 @@ export const materialStyles = theme => ({
     fontFamily: fontFamily,
     lineHeight: '1.46429em',
   },
+  descriptionStrongRed: {
+    color: theme.palette.red.main,
+    display: 'inline',
+    fontSize: '1rem',
+    fontWeight: 600,
+    fontFamily: fontFamily,
+    lineHeight: '1.46429em',
+  },
+  descriptionItalicRed: {
+    color: theme.palette.red.main,
+    display: 'inline',
+    fontSize: '1rem',
+    fontWeight: 600,
+    fontStyle: 'italic',
+    fontFamily: fontFamily,
+    lineHeight: '1.46429em',
+  },
+  h4NoMargin: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: '2.125rem',
+    fontFamily: fontFamily,
+    fontWeight: 400,
+    lineHeight: 1.17,
+    letterSpacing: '0.00735em',
+    marginBlockStart: '0em',
+    marginBlockEnd: '0em',
+    marginInlineStart: '0px',
+    marginInlineEnd: '0px',
+  },
+  h4SmallMargin: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: '2.125rem',
+    fontFamily: fontFamily,
+    fontWeight: 400,
+    lineHeight: 1.17,
+    letterSpacing: '0.00735em',
+    marginBlockStart: '0.5em',
+    marginBlockEnd: '0.5em',
+    marginInlineStart: '0px',
+    marginInlineEnd: '0px',
+  },
+  h4: {
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: '2.125rem',
+    fontFamily: fontFamily,
+    fontWeight: 400,
+    lineHeight: 1.17,
+    letterSpacing: '0.00735em',
+    marginBlockStart: '1.33em',
+    marginBlockEnd: '1.33em',
+    marginInlineStart: '0px',
+    marginInlineEnd: '0px',
+  },
+  h5: {
+    display: 'block',
+    fontSize: '0.83em',
+    marginBlockStart: '1.67em',
+    marginBlockEnd: '1.67em',
+    marginInlineEtart: '0px',
+    marginInlineEnd: '0px',
+    fontWeight: 'bold',
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
   footerLayout: {
     backgroundColor: '#007bff',
     bottom: 0,
     width: '100%',
     paddingRight: 15,
     paddingLeft: 15,
-    marginTop: 16
+    marginTop: 16,
+    // position: 'sticky'
   },
   footerBackground: {
     width: '100%',
@@ -367,148 +438,493 @@ export const materialStyles = theme => ({
     textTransform: 'none',
     paddingBottom: '10px'
   },
-  dashboardItemPanel: {
-    padding: 20,
-    marginTop: 5,
-    marginBottom: 5,
-    borderRadius: '.25rem',
+  underlineText: {
+    textDecoration: 'underline',
+    display: 'inline',
+    fontSize: '1rem'
   },
-  dashboardGeneralCard: {
-    backgroundClip: 'border-box',
-    border: '1px solid #c8ced3',
-    borderRadius: '.25rem',
-  },
-  dashboardGeneralCardHeader: {
-    padding: '.75rem 1.25rem',
-    marginBottom: 0,
-    backgroundColor: '#f0f3f5',
-    borderBottom: '1px solid #c8ced3'
-  },
-  metricToolsItemPanel: {
-    backgroundColor: '#20a8d8!important',
-    padding: 20,
-    border: '1px solid #187da0', //#2eadd3', //
-    marginTop: 5,
-    marginBottom: 5,
-    minHeight: 120,
-    maxHeight: 120,
-    borderRadius: '.25rem',
-  },
-  metricToolsItemPanelTitle: {
-    fontSize: '1.15rem',
-    fontWeight: '600',
-    fontFamily: fontFamily,
-    textTransform: 'none'
-  },
-  metricToolsItemPanelSubTitle: {
+  boldText: {
+    fontWeight: 600,
+    display: 'inline',
     fontSize: '1rem',
-    fontWeight: '600',
     fontFamily: fontFamily,
-    textTransform: 'none'
+    lineHeight: '1.46429em',
   },
-  dashboardButton: {
-    backgroundColor: theme.palette.primary.main,
-    fontFamily: fontFamily,
-    width: '300px',
-    fontSize: '25px'
+  boldUnderlineText: {
+    fontWeight: 600,
+    textDecoration: 'underline',
+    display: 'inline',
+    fontSize: '1rem',
+    lineHeight: '1.46429em',
   },
-  adminFormTalentNameButton: {
-    minWidth: '300px',
-    maxWidth: '300px',
-    minHeight: '105px',
-    padding: '8px',
-    display: 'block',
-    borderRadius: '5px'
+  fontLightWeight: {
+    fontWeight: 100
   },
-  adminFormTalentNameButtonTitle: {
+  fontMiddleWeight: {
+    fontWeight: 400
+  },
+  italicText: {
+    fontStyle: 'italic',
+  },
+  inlineText: {
+    display: 'inline'
+  },
+  centerText: {
+    textAlign: 'center',
+  },
+  leftText: {
+    textAlign: 'left',
+  },
+  rightText: {
+    textAlign: 'right',
+  },
+  fullWidth: {
+    width: '100%'
+  },
+  bold: {
+    fontWeight: 600,
+  },
+  red: {
+    color: theme.palette.red.main
+  },
+  white: {
+    color: theme.palette.white.main
+  },
+  blue: {
+    color: theme.palette.blue.main
+  },
+  green: {
+    color: theme.palette.green.main
+  },
+  containerPaper: {
+    padding: 20
+  },
+  pageTitleText: {
+    fontSize: '2rem',
+    fontWeight: 600
+  },
+  itemTitleText: {
     fontSize: '1.35rem',
+    fontWeight: 600
+  },
+  generalDescriptionText: {
+    color: theme.palette.black.main,
+    fontSize: '1rem',
+    fontWeight: 400
+  },
+  productionGalleryImage: {
+    width: '100%',
+    height: 'auto'
+  },
+
+  nextButton: {
+    margin: theme.spacing.unit,
+  },
+
+  orderRadioGroup: {
+    margin: `${theme.spacing.unit}px 0`,
+  },
+
+  orderRadio: {
+    marginLeft: 0,
+    marginRight: 40
+  },
+
+
+  talentVideoInterviewBody: {
+    fontSize: '1.5rem',
+    lineHeight: 2
+  },
+  talentVideoInstructionBody: {
+    fontSize: '17px',
+    textAlign: 'left',
+    lineHeight: 1.6
+  },
+  generalButtonClass: {
+    textTransform: 'none',
+    borderRadius: 0,
+    fontWeight: 'bold',
+    fontSize: '1.15rem',
+    fontFamily: fontFamily,
+  },
+  backButtonClass: {
+    textTransform: 'none',
+  },
+  nextButtonClass: {
+    textTransform: 'none',
+  },
+  uploadProgressBar: {
+    width: '200px',
+    margin: 'auto',
+    height: '30px'
+  },
+  fullWidthButtonGridItem: {
+    width: '100%'
+  },
+  generalAssistButtonTitle: {
+    fontSize: '1.5rem',
     fontWeight: 600,
     paddingTop: '5px',
     paddingBottom: '5px',
     textTransform: 'none',
-    whiteSpace: 'nowrap',
     color: theme.palette.white.main,
   },
-  adminFormTalentGenderButton: {
-    display: 'inline-flex',
-    marginLeft: 5,
-    padding: '3px 15px',
-    minWidth: 87,
-    backgroundColor: '#e0e0e0',
-    border: `1px solid ${theme.palette.black.main}`,
-    borderRadius: 4,
-    boxShadow: `0 0px 0px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
-    justifyContent: 'center',
+  generalAssistButton: {
+    borderRadius: '5px',
+    display: 'block',
   },
-  adminFormTalentGenderButtonTitle: {
+  talentFormBackButton: {
+    textTransform: 'none',
+    borderRadius: '0px',
+    primaryColor: theme.palette.white.main,
+  },
+  talentImportantRegardingButton: {
+    display: 'block',
+    borderRadius: '5px',
+    color: theme.palette.white.main,
+    boxShadow: 'none',
+    backgroundColor: '#C00',
+    '&:hover': {
+      backgroundColor: '#ab003c'
+    }
+  },
+  talentImportantRegardingButtonTitle: {
+    ontSize: '1rem',
+    fontWeight: 600,
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    textTransform: 'none',
+    color: theme.palette.black.main,
+  },
+  talentProfilePictureViewContainer: {
+    width: 230
+  },
+  talentProfileOtherInfoButton: {
+    display: 'block!important'
+  },
+  talentProfileOtherInfoButtonTitle: {
     fontSize: '1rem',
-    fontWeight: 400,
+    fontWeight: '600',
+    paddingTop: '5px',
+    paddingBottom: '5px',
     textTransform: 'none',
-    color: theme.palette.black.main,
-    textAlign: 'center'
   },
-  adminFormTalentGenderButtonSelected: {
-    display: 'inline-flex',
-    marginLeft: 5,
-    padding: '3px 15px',
-    minWidth: 87,
-    backgroundColor: theme.palette.green.main,
-    border: `1px solid ${theme.palette.black.main}`,
-    borderRadius: 4,
-    boxShadow: `0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
-    justifyContent: 'center'
-  },
-  adminTalentTitlePropertiesWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  adminTalentTitleSubPropertiesWrapper: {
-    minWidth: 87,
-    maxWidth: 87,
-    textAlign: 'left',
-    paddingLeft: 2,
-    paddingRight: 2,
-    marginLeft: 5
-  },
-  adminFormTalentSubPropertyButton: {
-    display: 'inline-flex',
-    marginLeft: 2,
-    padding: '1px 5px',
-    backgroundColor: '#e0e0e0',
-    border: `1px solid ${theme.palette.black.main}`,
-    borderRadius: '50%',
-    boxShadow: `0 0px 0px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
-    justifyContent: 'center',
-  },
-  adminFormTalentSubPropertyButtonSelected: {
-    display: 'inline-flex',
-    marginLeft: 2,
-    padding: '1px 5px',
-    backgroundColor: theme.palette.green.main,
-    border: `1px solid ${theme.palette.black.main}`,
-    borderRadius: '50%',
-    boxShadow: `0 0px 0px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
-    justifyContent: 'center',
-  },
-  adminFormTalentSubPropertyButtonTitle: {
-    fontSize: '0.5rem',
-    fontWeight: 400,
+
+  talentProfileOtherInfoButtonStatus: {
+    color: '#d6d7d8',
     textTransform: 'none',
-    color: theme.palette.black.main,
-    textAlign: 'center'
   },
-  adminFormTalentPropertyButtonItem: {
+
+  talentProfileOtherInfoButtonGroup: {
+    display: 'inherit'
+  },
+
+  talentProfileGuideButtonItem: {
+    textAlign: 'center',
     padding: '5px',
-    display: 'block!important',
+    display: 'block!important'
+  },
+  talentProfileGuideButton: {
+    display: 'block',
+    borderRadius: '5px'
+  },
+  talentProfileGuideDownloadButton: {
+    borderRadius: '5px'
+  },
+  talentProfileGuildDownloadCombinationButton: {
+    display: 'block',
+    borderRadius: '5px',
+    color: theme.palette.white.main,
+    boxShadow: 'none',
+    backgroundColor: '#C00',
+    '&:hover': {
+      backgroundColor: '#ab003c'
+    }
+  },
+  talentProfileGuideButtonSelected: {
+    display: 'block',
+    borderRadius: '5px',
+    color: theme.palette.white.main,
+    boxShadow: 'none',
+    backgroundColor: grey[500],
+    '&:hover': {
+      backgroundColor: grey[600]
+    }
+  },
+  talentProfileGuideButtonTitle: {
+    fontSize: '1rem',
+    fontWeight: 600,
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    textTransform: 'none',
+    color: theme.palette.white.main,
+  },
+  talentProfileGuideButtonTitleDisabled: {
+    fontSize: '1rem',
+    fontWeight: 600,
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    textTransform: 'none',
+    pointerEvents: 'none',
+    color: theme.palette.black.thin,
+  },
+  talentProfileGuideButtonRequiredTitle: {
+    fontWeight: 600,
+    color: theme.palette.red.light,
+    textTransform: 'none'
+  },
+  talentProfileGuideButtonSubTitle: {
+    fontWeight: 100,
+    color: theme.palette.white.thin,
+    textTransform: 'none'
+  },
+  talentProfileVideoGreetingImage: {
+    width: '100px',
+    height: '100px',
+    objectFit: 'cover'
+  },
+  talentProfileGeneralInfoNameCol: {
+    fontSize: '1rem!important',
+    fontWeight: '600!important',
+    textAlign: 'left',
+    display: 'inherit',
+    margin: 'auto'
+  },
+  talentProfileSpecialInfoNameCol: {
+    fontSize: '1rem!important',
+    fontWeight: '600!important',
+    textAlign: 'center',
+    display: 'inherit',
+    margin: 'auto'
+  },
+  talentProfileGeneralInfoName: {
+    fontSize: '1rem!important',
+    fontWeight: '600!important',
+    textAlign: 'left'
+  },
+  talentProfileGeneralInfoValue: {
+    fontSize: '1rem!important',
+    fontWeight: '400!important',
+    textAlign: 'left'
+  },
+  talentProfileBioTextValue: {
+    fontSize: '1rem!important',
+    fontWeight: '400!important',
+    textAlign: 'left',
+    display: 'contents'
+  },
+  talentProfileGeneralInfoValueCol: {
+    marginTop: 'auto!important',
+    marginBottom: 'auto!important'
+  },
+  talentProfileEditIcon: {
+    color: theme.palette.black.main,
+    fontSize: '1rem',
+    marginBottom: '4px',
+    marginRight: '7px',
+    '&:hover': {
+      color: theme.palette.black.light,
+    },
+  },
+  talentProfileSpecialInfoEditIcon: {
+    color: theme.palette.black.main,
+    fontSize: '1.15rem',
+    marginRight: '7px',
+    marginTop: '3px',
+    '&:hover': {
+      color: theme.palette.black.light,
+    },
+  },
+  talentProfileHeadlineEditIcon: {
+    color: theme.palette.black.main,
+    fontSize: '1.4rem',
+    marginRight: '7px',
+    marginTop: '10px',
+    '&:hover': {
+      color: theme.palette.black.light,
+    },
+  },
+  talentProfileEditIconEmpty: {
+    width: '24px'
+  },
+  talentProfileFileDeleteButton: {
+    padding: '0px',
+    minWidth: '10px',
+    minHeight: '10px',
+    width: '20px',
+    height: '20px',
+    position: 'relative',
+    top: '-33px',
+    left: '80px',
+    fontWeight: 600,
+  },
+  talentProfileFileDeleteDisable: {
+    color: '#FFFFFF',
+    borderRadius: '2px',
+    background: '#FFFFFF',
+    fontWeight: 600,
+    position: 'relative',
+    top: '-48px',
+    left: '192px'
+  },
+  talentProfileResumeDeleteButton: {
+    padding: '0px',
+    minWidth: '10px',
+    minHeight: '10px',
+    width: '20px',
+    height: '20px',
+    position: 'relative',
+    top: '-25px',
+    left: '170px',
+    fontWeight: 600,
+  },
+  talentProfilePictureEmpty: {
+    width: '20px',
+    height: '20px',
+  },
+  talentAvailabilityCalendarDeleteButton: {
+    padding: '0px',
+    minWidth: '10px',
+    minHeight: '10px',
+    width: '20px',
+    height: '20px',
+    display: 'block',
+    fontWeight: 600,
+    right: '-300px',
+    bottom: '-15px',
+    color: theme.palette.white.main,
+    backgroundColor: theme.palette.red.main,
+    '&:hover': {
+      backgroundColor: theme.palette.red.dark,
+    },
+  },
+  talentAvailabilityCalendarDeleteButtonGridItem: {
+    textAlign: 'right',
+  },
+  talentProfilePictureDeleteButton: {
+    padding: '0px',
+    minWidth: '10px',
+    minHeight: '10px',
+    width: '20px',
+    height: '20px',
+    position: 'relative',
+    top: '-25px',
+    left: '90px',
+    fontWeight: 600,
+  },
+  talentProfileViewTitleText: {
+    fontSize: '2rem',
+    fontWeight: 600,
+    fontFamily: fontFamily,
+    lineHeight: '1.46429em',
+  },
+  talentProfileViewSubTitleText: {
+    fontSize: '1.2rem',
+    fontWeight: 600,
+    fontFamily: fontFamily,
+    lineHeight: '1.46429em',
+  },
+  talentProfileViewHeaderTextItem: {
+    fontSize: '1rem!important',
+    fontWeight: '600!important',
+    textAlign: 'center',
+    display: 'inherit',
+    margin: 'auto',
+
+  },
+  talentProfileViewHeaderText: {
+    fontSize: '1.4rem',
+    fontWeight: 600,
+    fontFamily: fontFamily,
+    lineHeight: '1.46429em',
+    textAlign: 'center',
+    padding: '3px 10px 3px 10px',
+    border: `3px solid ${theme.palette.black.main}`
+  },
+  talentProfileVideoViewModal: {
+    width: '60%',
+    height: '70%',
+    left: '20%',
+    top: '15%'
+  },
+  talentProfileVideoUploadingText: {
+    padding: '10px',
+    fontSize: '1rem',
+    textAlign: 'center',
+    top: '-36px',
+    position: 'relative',
+    fontWeight: '400'
+  },
+  talentProfileVideoAuditionSubTitleText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: '10px',
+    fontSize: '1.5rem'
+  },
+  talentProfileVideoAuditionDescriptionText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: '10px',
+    fontSize: '1rem'
+  },
+  talentProfileVideoAuditionUploadersRow: {
+    width: '100%'
+  },
+  talentProfileVideoAuditionInstructionLinkedText: {
+    color: '#0366d6',
+    textDecoration: 'underline',
+    fontSize: '0.85rem',
     textAlign: 'center'
   },
-  adminHomeContainer: {
+  talentProfileVideoAuditionHelpfulHintTitle: {
+    textAlign: 'center',
+    fontSize: '1rem',
+    fontWeight: 'bold',
+  },
+  talentProfileVideoAuditionHelpfulHintContentGrid: {
+    border: '4px solid #000000',
+    margin: 'auto',
+    width: '250px',
+    minWidth: '250px'
+  },
+  talentProfileVideoAuditionHelpfulHintText: {
+    textAlign: 'center',
+    fontSize: '0.85rem',
+    fontWeight: 100,
+  },
+  talentProfileVideoAuditionHelpfulHintImage: {
+    width: '100%',
+  },
+  talentIntroductionButton: {
+    borderRadius: '5px',
+    padding: '16px 8px',
+    display: 'block'
+  },
+  talentIntroductionButtonTitle: {
+    fontWeight: 100,
+    fontSize: '1rem',
+    color: theme.palette.white.main,
+    textTransform: 'none'
+  },
+  talentIntroductionButtonSuffixTitle: {
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    textTransform: 'none',
+    display: 'inline',
+    color: theme.palette.white.main,
+  },
+  homeBackgroundImage: {
+    width: '100%',
+    height: '1080px'
+  },
+  clientHomeContainer: {
     marginLeft: '-15px',
     marginRight: '-15px',
     marginBottom: '-16px'
   },
-  adminHomeButtonsContainer: {
+  clientHomeButtonsContainer: {
     width: '100%',
     borderRadius: '0rem',
     marginBottom: '0rem',
@@ -517,7 +933,7 @@ export const materialStyles = theme => ({
     backgroundColor: 'transparent!important',
     position: 'absolute'
   },
-  adminHomeButton: {
+  clientHomeButton: {
     minWidth: '300px',
     maxWidth: '300px',
     minHeight: '105px',
@@ -525,7 +941,7 @@ export const materialStyles = theme => ({
     display: 'block',
     borderRadius: '5px'
   },
-  adminHomeButtonTitle: {
+  clientHomeButtonTitle: {
     fontSize: '1.5rem',
     fontWeight: 600,
     paddingTop: '5px',
@@ -534,33 +950,35 @@ export const materialStyles = theme => ({
     whiteSpace: 'nowrap',
     color: theme.palette.white.main,
   },
-  adminHomeButtonSubTitle: {
+  clientHomeButtonSubTitle: {
     fontWeight: 400,
     color: theme.palette.white.light,
     textTransform: 'none'
   },
-  adminTalentTableCheckboxGridItem: {
+  clientTalentTableCheckboxGridItem: {
     marginTop: 'auto',
     marginBottom: 'auto',
     textAlign: 'right'
   },
-  adminTalentSearchGenderButtonItem: {
+  clientTalentSearchGenderButtonItem: {
     padding: '5px',
     display: 'block!important'
   },
-  adminTalentSearchGenderButton: {
+  clientTalentSearchGenderButton: {
     display: 'inline-flex',
     borderRadius: '9px',
     border: `1px solid ${theme.palette.black.main}`,
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
+    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
+    maxWidth: 120,
+    // minWidth: 120
   },
-  adminTalentSearchGenderButtonTitle: {
+  clientTalentSearchGenderButtonTitle: {
     fontSize: '1rem',
     fontWeight: 600,
     textTransform: 'none',
     color: theme.palette.black.main,
   },
-  adminTalentSearchGenderButtonSelected: {
+  clientTalentSearchGenderButtonSelected: {
     display: 'inline-flex',
     borderRadius: '9px',
     color: theme.palette.white.main,
@@ -569,28 +987,32 @@ export const materialStyles = theme => ({
     '&:hover': {
       backgroundColor: theme.palette.black.thin
     },
-    boxShadow: `0 0px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
+    boxShadow: `0 0px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
+    maxWidth: 120,
+    // minWidth: 120
   },
-  adminTalentSearchGenderButtonSelectedTitle: {
+  clientTalentSearchGenderButtonSelectedTitle: {
     fontSize: '1rem',
     fontWeight: 600,
     textTransform: 'none',
     color: theme.palette.black.main,
   },
-  adminTalentSearchSubPositionButton: {
+  clientTalentSearchSubPositionButton: {
     display: 'inline-flex',
     borderRadius: '9px',
     border: `1px solid ${theme.palette.black.main}`,
     padding: 0,
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
+    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
+    maxWidth: 45,
+    minWidth: 45
   },
-  adminTalentSearchSubPositionButtonTitle: {
-    fontSize: '0.75rem',
+  clientTalentSearchSubPositionButtonTitle: {
+    fontSize: '0.65rem',
     fontWeight: 400,
     textTransform: 'none',
     color: theme.palette.black.main,
   },
-  adminTalentSearchSubPositionButtonSelected: {
+  clientTalentSearchSubPositionButtonSelected: {
     display: '\'inline-flex',
     borderRadius: '9px',
     color: theme.palette.white.main,
@@ -600,30 +1022,32 @@ export const materialStyles = theme => ({
     '&:hover': {
       backgroundColor: theme.palette.black.thin
     },
-    boxShadow: `0 0px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
+    boxShadow: `0 0px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
+    maxWidth: 45,
+    minWidth: 45
   },
-  adminTalentSearchSubPositionButtonSelectedTitle: {
+  clientTalentSearchSubPositionButtonSelectedTitle: {
     fontSize: '0.75rem',
     fontWeight: 400,
     textTransform: 'none',
     color: theme.palette.black.main,
   },
-  adminTalentSearchResultPicture: {
+  clientTalentSearchResultPicture: {
     width: '70px',
     height: '72px',
     objectFit: 'cover',
   },
-  adminTalentControlButtonContainer: {
+  clientTalentControlButtonContainer: {
     padding: '0px',
     maxWidth: '30px',
     margin: '0px'
   },
-  adminTalentControlNewText: {
+  clientTalentControlNewText: {
     padding: '0px',
     fontSize: '14px',
     fontWeight: 600,
   },
-  adminCallbackTalentControlContainerDiv: {
+  clientCallbackTalentControlContainerDiv: {
     width: '64px',
     clear: 'both',
     display: 'inline-block',
@@ -634,7 +1058,7 @@ export const materialStyles = theme => ({
     marginBottom: '10px',
     marginRight: '5px',
   },
-  adminRatingTalentControlContainerDiv: {
+  clientRatingTalentControlContainerDiv: {
     width: '64px',
     clear: 'both',
     display: 'inline-block',
@@ -645,7 +1069,7 @@ export const materialStyles = theme => ({
     marginTop: '23px',
     marginRight: '5px',
   },
-  adminTalentControlContainerDiv: {
+  clientTalentControlContainerDiv: {
     width: '64px',
     clear: 'both',
     display: 'inline-block',
@@ -656,14 +1080,14 @@ export const materialStyles = theme => ({
     marginTop: '10px',
     marginRight: '5px',
   },
-  adminTalentContainerDiv: {
+  clientTalentContainerDiv: {
     clear: 'both',
     display: 'inline-block',
     overflow: 'hidden',
     // white-space: nowrap;
     width: '90%'
   },
-  adminTalentControlEditIcon: {
+  clientTalentControlEditIcon: {
     padding: '0px',
     minWidth: '10px',
     minHeight: '10px',
@@ -672,7 +1096,7 @@ export const materialStyles = theme => ({
     fontSize: '20px',
     fontWeight: 600,
   },
-  adminTalentControlDeleteButton: {
+  clientTalentControlDeleteButton: {
     padding: '0px',
     minWidth: '10px',
     minHeight: '10px',
@@ -680,30 +1104,30 @@ export const materialStyles = theme => ({
     height: '20px',
     fontWeight: 600,
   },
-  adminTalentControlDeleteIcon: {
+  clientTalentControlDeleteIcon: {
     color: theme.palette.grey.thin,
     fontSize: '20px',
     fontWeight: 600,
   },
-  adminTalentControlBlockProfileExpirationText: {
+  clientTalentControlBlockProfileExpirationText: {
     padding: '0px',
     fontSize: '0.8rem',
     fontWeight: 100,
   },
-  adminTalentControlRatingButton: {
+  clientTalentControlRatingButton: {
     padding: '3px 10px 3px 10px',
     minWidth: '10px',
     minHeight: '10px',
     width: '50px',
     fontWeight: 400,
   },
-  adminTalentControlRatingButtonText: {
+  clientTalentControlRatingButtonText: {
     color: theme.palette.white.main,
     fontSize: '0.8rem',
     fontWeight: 400,
     textTransform: 'none',
   },
-  adminRatingAvatarImageContainer: {
+  clientRatingAvatarImageContainer: {
     width: 300,
     height: '100%',
     objectFit: 'cover'
@@ -716,52 +1140,52 @@ export const materialStyles = theme => ({
     marginRight: '10px',
     verticalAlign: 'top'
   },
-  adminFormSubTitle: {
+  clientFormSubTitle: {
     fontSize: '1.25rem',
     fontWeight: 600,
-    //ffontFamily: fontFamily,
-    fontFamily: fontFamily,
+    //fontFamily: fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     lineHeight: '1.46429em',
     marginTop: '0.5rem'
   },
-  adminFromTalentIDContainer: {
+  clientFromTalentIDContainer: {
     fontSize: '1rem',
     fontWeight: 400,
-    fontFamily: fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     lineHeight: '1.46429em',
     position: 'absolute',
     right: 15,
     top: 45,
   },
-  adminFromTalentName: {
+  clientFromTalentName: {
     fontSize: '1.35rem',
     fontWeight: 600,
-    fontFamily: fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     lineHeight: '1.46429em',
   },
-  adminFromTalentHeadLine: {
+  clientFromTalentHeadLine: {
     fontSize: '1.15rem',
     fontWeight: 600,
-    fontFamily: fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     lineHeight: '1.46429em',
   },
-  adminFromTalentIDText: {
+  clientFromTalentIDText: {
     fontSize: '1rem',
     fontWeight: 600,
-    fontFamily: fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     lineHeight: '1.46429em',
   },
-  adminFromTalentMarkFavoriteText: {
+  clientFromTalentMarkFavoriteText: {
     fontSize: '0.85rem',
     fontWeight: 400,
-    fontFamily: fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     lineHeight: '1.46429em',
   },
-  adminRatingSubTitle: {
+  clientRatingSubTitle: {
     width: '60%',
     margin: 'auto'
   },
-  adminFormBackButton: {
+  clientFormBackButton: {
     textTransform: 'none',
     borderRadius: '8px',
     backgroundColor: theme.palette.black.main,
@@ -771,10 +1195,10 @@ export const materialStyles = theme => ({
       backgroundColor: theme.palette.black.thin,
     },
   },
-  adminFormNextButtonContainerGridItem: {
+  clientFormNextButtonContainerGridItem: {
     textAlign: 'right',
   },
-  adminFormNextButton: {
+  clientFormNextButton: {
     textTransform: 'none',
     borderRadius: '8px',
     backgroundColor: theme.palette.black.main,
@@ -784,54 +1208,39 @@ export const materialStyles = theme => ({
       backgroundColor: theme.palette.black.thin,
     },
   },
-  adminFormBackButtonText: {
+  clientFormBackButtonText: {
     color: theme.palette.white.main,
   },
-  adminFormNextButtonText: {
+  clientFormNextButtonText: {
     color: theme.palette.white.main
   },
-  adminSearchCitizenShip: {
-    width: '100%'
-  },
-  adminSearchResultTalentHeadlineText: {
+  clientSearchResultTalentHeadlineText: {
     fontWeight: 'bold'
   },
-  adminTalentViewHeaderGridItem: {
+  clientTalentViewHeaderGridItem: {
     textAlign: 'center'
   },
-  adminTalentViewHeaderTitleText: {
+  clientTalentViewHeaderTitleText: {
     border: '2px solid',
     fontWeight: 'bold',
     fontSize: '1.5rem',
     padding: '5px 10px 5px 10px',
     display: 'inline-flex'
   },
-  adminTalentViewButton: {
-    display: 'block',
-    borderRadius: '5px',
-    border: '1px solid rgba(0, 0, 0, 1)',
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminTalentViewButtonText: {
-    fontSize: '1.25rem',
-    fontWeight: '600',
-    fontFamily: fontFamily,
-    textTransform: 'none',
-  },
-  adminTalentViewMoreInfoButtonGridItemWithoutFullWidth: {
+  clientTalentViewMoreInfoButtonGridItemWithoutFullWidth: {
     textAlign: 'center',
   },
-  adminTalentViewMoreInfoButtonGridItem: {
+  clientTalentViewMoreInfoButtonGridItem: {
     textAlign: 'center',
     paddingLeft: '15%!important',
     paddingRight: '15%!important',
     width: '100%'
   },
-  adminTalentViewMoreInfoButton: {
+  clientTalentViewMoreInfoButton: {
     display: 'block',
     borderRadius: '5px',
   },
-  adminTalentViewMoreInfoButtonText: {
+  clientTalentViewMoreInfoButtonText: {
     fontSize: '1rem',
     fontWeight: 600,
     paddingTop: '5px',
@@ -839,15 +1248,15 @@ export const materialStyles = theme => ({
     textTransform: 'none',
     color: theme.palette.white.main
   },
-  adminTalentViewMoreInfoButtonStatusText: {
+  clientTalentViewMoreInfoButtonStatusText: {
     color: theme.palette.white.thin,
     textTransform: 'none',
   },
-  adminTalentViewVideoButtonGridItem: {
+  clientTalentViewVideoButtonGridItem: {
     textAlign: 'center',
     padding: '5px'
   },
-  adminTalentViewVideoButton: {
+  clientTalentViewVideoButton: {
     backgroundColor: theme.palette.black.main,
     display: 'block',
     borderRadius: '10px',
@@ -856,7 +1265,7 @@ export const materialStyles = theme => ({
       backgroundColor: theme.palette.black.light
     },
   },
-  adminTalentViewVideoButtonText: {
+  clientTalentViewVideoButtonText: {
     fontSize: '1rem',
     fontWeight: 600,
     paddingTop: '5px',
@@ -864,11 +1273,11 @@ export const materialStyles = theme => ({
     textTransform: 'none',
     color: theme.palette.white.main
   },
-  adminTalentViewVideoButtonStatusText: {
+  clientTalentViewVideoButtonStatusText: {
     color: theme.palette.white.thin,
     textTransform: 'none',
   },
-  adminCastingRequestGridItem: {
+  clientCastingRequestGridItem: {
     textAlign: 'right',
     paddingRight: '5px!important',
     verticalAlign: 'top',
@@ -877,7 +1286,7 @@ export const materialStyles = theme => ({
     justifyContent: 'flex-end',
     display: 'flex'
   },
-  adminCastingRequestListViewButton: {
+  clientCastingRequestListViewButton: {
     backgroundColor: theme.palette.black.main,
     display: 'block',
     borderRadius: '9px',
@@ -886,7 +1295,7 @@ export const materialStyles = theme => ({
       backgroundColor: theme.palette.black.light
     },
   },
-  adminTalentSearchButton: {
+  clientTalentSearchButton: {
     backgroundColor: theme.palette.black.main,
     display: 'block',
     borderRadius: '9px',
@@ -896,7 +1305,7 @@ export const materialStyles = theme => ({
     },
     // width: '100px'
   },
-  adminCastingRequestListViewButtonText: {
+  clientCastingRequestListViewButtonText: {
     fontSize: '0.95rem',
     fontWeight: 400,
     paddingTop: '1px',
@@ -904,7 +1313,7 @@ export const materialStyles = theme => ({
     textTransform: 'none',
     color: theme.palette.white.main
   },
-  adminSharedProfileTeamMemberText: {
+  clientSharedProfileTeamMemberText: {
     background: 'black',
     color: 'white',
     textAlign: 'center',
@@ -925,285 +1334,52 @@ export const materialStyles = theme => ({
     textTransform: 'none',
     color: theme.palette.white.main
   },
-  adminImmigrationForm: {
+  clientImmigrationForm: {
     marginLeft: 100,
     marginRight: 100
   },
-  adminVideoPlayer: {
+  clientVideoPlayer: {
     margin: 'auto'
   },
-  adminEmptyVideoPlayer: {
+  clientEmptyVideoPlayer: {
     margin: 'auto',
     border: '2px dashed',
     width: '100%',
     height: '100%'
-  },
-  adminSearchCriteriaPositionButton: {
-    display: 'inline-flex',
-    borderRadius: '9px',
-    color: theme.palette.white.main,
-    backgroundColor: theme.palette.black.light,
-    border: `1px solid ${theme.palette.black.main}`,
-    '&:hover': {
-      backgroundColor: theme.palette.black.thin
-    },
-    boxShadow: `0 0px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
-    marginRight: '5px',
-    marginTop: '5px'
-  },
-  adminSearchCriteriaPositionButtonText: {
-    fontSize: '1rem',
-    fontWeight: 600,
-    textTransform: 'none',
-    color: theme.palette.black.main,
-  },
-  adminGeneralTitle: {
-    fontSize: '1.2rem',
-    fontWeight: 400,
-    textTransform: 'none',
-  },
-  adminGeneralText: {
-    fontSize: '1rem',
-    fontWeight: 400,
-    textTransform: 'none',
-  },
-  adminNewProfilesApprovalImage: {
-    width: '100%',
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminTalentStatusButton: {
-    minHeight: 70,
-    maxHeight: 70,
-    borderRadius: 9,
-    border: '1px solid',
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminTalentStatusApproved: {
-    backgroundColor: theme.palette.red.main,
-    '&:hover': {
-      backgroundColor: theme.palette.red.dark
-    },
-  },
-  adminTalentStatusButtonText: {
-    fontSize: '1.15rem',
-    fontWeight: 600,
-    textTransform: 'none',
-  },
-  // Status colors
-  adminStatusTalentAvailable: {
-    color: `${theme.palette.green.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusTalentNotAvailable: {
-    color: `${theme.palette.red.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusTalentActiveCastingRequest: {
-    color: `${theme.palette.yellow.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusTalentContracted: {
-    color: `${theme.palette.green.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusTalentDeployed: {
-    color: `${theme.palette.red.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusApproveAwaitingApproval: {
-    width: 30,
-    height: 30,
-    borderRadius: '50%',
-    border: '1px solid',
-    backgroundColor: theme.palette.red.main
-  },
-  adminStatusApproveNotApproved: {
-    width: 30,
-    height: 30,
-    borderRadius: '50%',
-    border: '1px solid',
-    backgroundColor: '#e0e0e0'
-  },
-  adminStatusApproveApproved: {
-    width: 30,
-    height: 30,
-    borderRadius: '50%',
-    border: '1px solid',
-    backgroundColor: theme.palette.green.main
-  },
-  adminTalentVideoButton: {
-    display: 'block',
-    borderRadius: '5px'
-  },
-  adminTalentVideoButtonTitle: {
-    fontSize: '1rem',
-    fontWeight: 600,
-    paddingTop: '5px',
-    paddingBottom: '5px',
-    color: theme.palette.white.main,
-  },
-  adminTalentVideoButtonSubTitle: {
-    fontWeight: 400,
-    color: theme.palette.white.thin,
-    textTransform: 'none',
-    textAlign: 'left'
-  },
-  adminStatusCastingRequestContractCompleted: {
-    color: `${theme.palette.green.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusCastingRequestContractNotCompleted: {
-    color: `${theme.palette.black.main}!important`,
-    padding: '5px 12px'
-  },
-  adminStatusCastingRequestTalentPending: {
-    backgroundColor: `#e0e0e0!important`,
-  },
-  adminStatusCastingRequestTalentAdvised: {
-    backgroundColor: `${theme.palette.orange.main}!important`,
-  },
-  adminStatusCastingRequestTalentAccepted: {
-    backgroundColor: `${theme.palette.yellow.main}!important`,
-  },
-  adminStatusCastingRequestTalentContracted: {
-    backgroundColor: `${theme.palette.green.main}!important`,
-  },
-  adminStatusCastingRequestTalentDeclined: {
-    backgroundColor: `${theme.palette.red.main}!important`,
-  },
-  ///////
-  adminNewProfileApprovedButton: {
-    width: 200,
-    height: 47,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#4dd0e1',
-    '&:hover': {
-      backgroundColor: '#0097a7'
-    },
-    boxShadow: `0 0px 0px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminConfirmButton: {
-    textTransform: 'none',
-  },
-  adminEditProfileDescriptionContainer: {
-    backgroundColor: '#000000',
-    padding: '20px',
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminEditProfileDescriptionText: {
-    color: theme.palette.white.main,
-    fontSize: '1rem'
-  },
-  adminEditProfileDescriptionTextWithTooltip: {
-    color: theme.palette.yellow.main,
-    textDecoration: 'underline',
-    fontWeight: 600,
-    cursor: 'pointer'
-  },
-  adminEditProfileDescriptionTextTooltipContainer: {
-    maxWidth: '500px',
-  },
-  adminSaveButton: {
-    marginLeft: 20,
-    marginRight: 7,
-    textTransform: 'none',
-    boxShadow: `0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminGeneralDescriptionText: {
-    color: theme.palette.black.main,
-    fontSize: '1rem'
-  },
-  adminResumeApproveSelection: {
-    color: theme.palette.green.main,
-    '&$checked': {
-      color: theme.palette.green.light,
-    },
-  },
-  adminResumeApproveSelectionChecked: {},
-  adminPorfilePictureContainer: {
-    width: 150,
-    height: 180,
-    objectFit: 'cover'
-  },
-  adminCastingRequestButton: {
-    display: 'block',
-    borderRadius: '5px',
-    border: '1px solid rgba(0, 0, 0, 1)',
-    boxShadow: `0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`
-  },
-  adminAddNoteButton: {
-    borderRadius: '5px',
-    border: '1px solid rgba(0, 0, 0, 1)',
-    boxShadow: `0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12)`,
-    textTransform: 'none',
-  },
-  adminAddNoteButtonTitle: {
-    fontSize: '0.85rem',
-    fontWeight: 400
-  },
-  adminCastingRequestGroupButton: {
-    display: 'block',
-    borderRadius: '5px',
-    border: '1px solid rgba(0, 0, 0, 1)',
-    boxShadow: `0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)`,
-    height: 100
-  },
-  adminCastingRequestGroupButtonTitle: {
-    fontSize: '1.25rem',
-    fontWeight: '600',
-    fontFamily: fontFamily,
-    textTransform: 'none',
-  },
-  adminCastingRequestGroupButtonSubTitle: {
-    fontSize: '1rem',
-    fontWeight: '400',
-    fontFamily: fontFamily,
-    textTransform: 'none',
-  },
-  adminTalentMetricTalentPciture: {
-    width: '70px',
-    height: '72px',
-    objectFit: 'cover',
-  },
-  adminTalentMatricTableNoItemText: {
-    color: 'grey', 
-    fontStyle: 'italic'
   }
 });
 
-export const themeMaterial = createMuiTheme ({
+export const theme = createMuiTheme ({
   palette: {
     primary: {
-      main: '#28a745', //'#212121',
-      light: '#424242'
+      main: '#28a745', //'#007bff',
+      light: '#2196F3'
     },
     secondary: {
-      main: '#28a745'//'#C00'
+      main: '#C00'
     },
     green: {
-      main: '#28a745',
-      light: green[500]
+      main: '#28a745'
     },
     teal: {
       main: '#20c997'
     },
     white: {
       main: '#FFFFFF',
-      light: '#f8f9fa',
+      light: grey[100],
       dark: grey[300],
       thin: '#d6d7d8',
       contrastText: '#fff'
     },
     black: {
       main: grey[900],
-      dark: '#343a40',
+      dark: grey[800],
       thin: grey[700],
       light: grey[600],
     },
     grey: {
       main: grey[900],
-      dark: '#343a40',
+      dark: grey[800],
       light: grey[400],
       thin: grey[200],
     },
@@ -1214,29 +1390,19 @@ export const themeMaterial = createMuiTheme ({
       main: grey[400]
     },
     red: {
-      main: '#dd2c00', //red[700],
-      thin: red[100],
-      light: '#ff6e40', //red[500],
-      dark: '#ff3d00', //red[900]
+      main: '#C00',
+      thin: red[400],
+      light: red[400],
+      dark: red[900]
     },
     blue: {
       main: blue[700],
       light: blue[400],
       dark: blue[900]
-    },
-    yellow: {
-      main: yellow[500],
-      light: yellow[300],
-      dark: yellow[600],
-    },
-    orange: {
-      main: orange[500],
-      light: orange[300],
-      dark: orange[700]
     }
   },
   typography: {
-    ffontFamily: fontFamily,
+    fontFamily: fontFamily,
     textTransform: "none",
     useNextVariants: true
   },
@@ -1244,28 +1410,87 @@ export const themeMaterial = createMuiTheme ({
     primaryColor: '#FFFFFF',
     primaryFontSize: '1.5rem'
   },
+});
 
-  overrides: {
-    // Name of the component ⚛️ / style sheet
-    // MuiButton: {
-    //   root: {
-    //     backgroundColor: '#007bff!important',
-    //   },
-    //   text: {
-    //     // Some CSS
-    //     // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    //     borderRadius: 3,
-    //     border: 0,
-    //     color: 'white',
-    //     height: 48,
-    //     padding: '0 30px',
-    //     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    //   },
-    // },
-    MuiListItemText: {
-      primary: {
-        color: '#f8f9fa'
-      }
+
+export const themeMaterial = createMuiTheme ({
+  palette: {
+    primary: {
+      main: '#28a745', //'#007bff',
+      light: '#2196F3'
     },
+    secondary: {
+      main: '#C00'
+    },
+    green: {
+      main: '#28a745'
+    },
+    teal: {
+      main: '#20c997'
+    },
+    white: {
+      main: '#FFFFFF',
+      light: grey[100],
+      dark: grey[300],
+      thin: '#d6d7d8',
+      contrastText: '#fff'
+    },
+    black: {
+      main: grey[900],
+      dark: grey[800],
+      thin: grey[700],
+      light: grey[600],
+    },
+    grey: {
+      main: grey[900],
+      dark: grey[800],
+      light: grey[400],
+      thin: grey[200],
+    },
+    darkGrey: {
+      main: grey[800]
+    },
+    lightGrey: {
+      main: grey[400]
+    },
+    red: {
+      main: '#C00',
+      thin: red[400],
+      light: red[400],
+      dark: red[900]
+    },
+    blue: {
+      main: blue[700],
+      light: blue[400],
+      dark: blue[900]
+    }
+  },
+  typography: {
+    fontFamily: fontFamily,
+    textTransform: "none",
+    useNextVariants: true
+  },
+  button: {
+    primaryColor: '#FFFFFF',
+    primaryFontSize: '1.5rem'
   },
 });
+
+export const themeClientSpecialActionButton = createMuiTheme ({
+  palette: {
+    primary: {
+      main: '#2a3134',
+    },
+    secondary: {
+      main: '#C00'
+    }
+  }
+});
+
+export const clientDesigns = {
+  talentSearch: {
+    PositionsTableItems: { xl: 1, lg: 1, md: 2, sm: 3, xs: 4 },
+  },
+};
+
+export default materialStyles;

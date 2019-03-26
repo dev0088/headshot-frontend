@@ -1,26 +1,4 @@
 {
-	"MARKER": [
-		{
-			"name": "Marker",
-			"description": "",
-			"type": "marker",
-			"icon": {
-                "prefix": "fas",
-                "name": "map-marker-alt"
-            },
-            "option": {
-                "type": "i-text",
-                "text": "\uf3c5",
-                "fontFamily": "Font Awesome 5 Free",
-                "fontWeight": 900,
-                "fontSize": 60,
-                "width": 30,
-                "height": 30,
-                "editable": false,
-                "name": "New marker"
-            }
-		}
-	],
 	"TEXT": [
 		{
 			"name": "Text",
@@ -147,55 +125,5 @@
                 "name": "New arrow"
             }
         }
-	],
-	"ELEMENT": [
-		{
-			"name": "Element",
-			"description": "",
-			"type": "dom_element",
-			"icon": {
-                "prefix": "fab",
-                "name": "html5"
-            },
-            "option": {
-                "type": "element",
-                "width": 480,
-                "height": 270,
-                "name": "New element"
-            }
-        },
-        {
-			"name": "IFrame",
-			"description": "",
-			"type": "dom_element",
-			"icon": {
-                "prefix": "fas",
-                "name": "window-maximize"
-            },
-            "option": {
-                "type": "iframe",
-                "width": 480,
-                "height": 270,
-                "name": "New iframe"
-            }
-        },
-        {
-			"name": "Video",
-			"description": "",
-			"type": "dom_element",
-			"icon": {
-                "prefix": "fab",
-                "name": "youtube"
-            },
-            "option": {
-                "type": "video",
-                "width": 480,
-                "height": 270,
-                "name": "New video",
-                "autoplay": true,
-                "muted": true,
-                "loop": true
-            }
-		}
 	]
 }

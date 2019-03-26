@@ -8,6 +8,10 @@ class HeadshotAPI {
     CommonAPI.processRequest(`productions/all`, 'get', null, handleResponse);
   }
 
+  static getProduction(productionId, handleResponse) {
+    CommonAPI.processRequest(`productions/${productionId}`, 'get', null, handleResponse);
+  }
+
   // static saveProfile(userId, data, handleResponse) {
   //   this.processRequestWithToken(`talent/${userId}`, 'put', data, handleResponse);
   // }

@@ -5,20 +5,10 @@ import { persistReducer, persistStore } from 'redux-persist'
 import { routerMiddleware } from 'react-router-redux'
 import apiMiddleware from './middleware';
 import rootReducer from './reducers'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger'
 
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export default (history) => {
-  
-  // const logger = createLogger({
-  //   // ...options
-  // });
-
-  const persistedFilter = createFilter(
-    'productions'
-  );
-
   const persistConfig = {
     key: 'root',
     storage,
@@ -30,14 +20,13 @@ export default (history) => {
   );
 
   const store = createStore(
-    persistedReducer, /*{},*/
-    // composeWithDevTools(
-      applyMiddleware(apiMiddleware, /*routerMiddleware(history),*/ logger),
-    // )
+    persistedReducer, {},
+    composeWithDevTools(
+      applyMiddleware(apiMiddleware, routerMiddleware(history)),
+    )
   );
 
   let persistor = persistStore(store);
 
-  // return store
   return { store, persistor };
 }
