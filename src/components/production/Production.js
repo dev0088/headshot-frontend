@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-// import { Popconfirm, message, Button } from 'antd';
-// import storage from 'store/storages/localStorage';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from '@material-ui/core/Button';
@@ -18,6 +18,7 @@ import SelectQuantity from './SelectQuantity';
 import CloudinaryUploader from './CloudinaryUploader';
 import ProductionUpload from './ProductionUpload';
 import * as appUtils from '../../utils/appUtils';
+import * as productionActions from '../../actions/productionActions';
 import { materialStyles } from '../../styles/material/index';
 
 
@@ -32,12 +33,14 @@ class Production extends Component {
     hasImage: false,
     uploadImageUrl: null,
     fileName: '',
+    headshot: null
   };
 
   componentWillMount() {
     this.setState({
       loading: true,
       step: 0,
+      headshot: null,
     }, () => {
       HeadshotAPI.getProduction(this.props.productionId, this.handleGetProductionResponse);
     });
@@ -69,22 +72,51 @@ class Production extends Component {
   }
 
   handleNext = () => {
-    this.setState(state => ({
-      step: state.step + 1,
-    }));
+    if (this.state.step === 1) {
+      // Create new headshot
+      this.setState({loading: true}, () => {
+        const { fileName, uploadImageUrl, quantityId } = this.state;
+        let data = {
+          "file_name": fileName,
+          "quantity": quantityId,
+          "status": "Draft"
+        };
+        HeadshotAPI.createHeadshot(data, this.handleCreateHeadshot);
+      });
+    } else {
+      this.setState({
+        step: this.state.step + 1,
+      }, () => {
+        this.props.productionActions.setProductionState(this.state);
+      });  
+    }
   };
 
   handleBack = () => {
-    this.setState(state => ({
-      step: state.step - 1,
-    }));
+    this.setState({
+      step: this.state.step - 1,
+    }, () => {
+      this.props.productionActions.setProductionState(this.state);
+      if (this.state.step === 1) {
+        if (this.state.headshot) HeadshotAPI.deleteHeadshot(this.state.headshot.id, handleCreateHeadshot);
+      }
+    });
   };
 
   handleReset = () => {
     this.setState({
       step: 0,
+    }, () => {
+      this.props.productionActions.setProductionState(this.state);
     });
   };
+
+  handleCreateHeadshot = (response, isFailed) => {
+    if (isFailed) {}
+    else this.setState({loading: false, headshot: response, step: this.state.step + 1}, () => {
+      this.props.productionActions.setProductionState(this.state);
+    });
+  }
 
   renderStepForm = () => {
     const { production, step, order, quantityId, hasImage } = this.state;
@@ -109,7 +141,7 @@ class Production extends Component {
   render = () => {
     const { classes } = this.props;
     const { loading, production, step, quantityId } = this.state;
-
+    console.log('==== production: ', this);
     let productionQuantities = [];
 
     if (!(production && production.production_quantities)) {
@@ -174,4 +206,18 @@ class Production extends Component {
   }
 }
 
-export default withStyles(materialStyles)(Production);
+function mapStateToProps(state) {
+  const { productions, production } = state;
+  return {
+    productions,
+    production
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    productionActions: bindActionCreators(productionActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(materialStyles)(Production));

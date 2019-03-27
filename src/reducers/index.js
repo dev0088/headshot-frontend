@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { getAllProductions } from './productionReducer';
-import { productionStepReducer } from './productionStepReducer';
+import { getAllProductions } from './productionsReducer';
+// import { productionStepReducer } from './productionStepReducer';
+import { productionStateReducer } from './productionStateReducer';
 
 export default combineReducers({
   productions: getAllProductions,
-  productionStep: productionStepReducer
+  production: productionStateReducer,
+  // productionStep: productionStepReducer
 });
 
 export const isAuthenticated = state => fromAuth.isAuthenticated(state.auth)

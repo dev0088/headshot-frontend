@@ -27,3 +27,12 @@ export const setStep = (setp) => {
     }
   }
 };
+
+export const setProductionState = (state) => {
+  return {
+    type: types.SET_PRODUCTION_STATE,
+    payload: {
+      ...state
+    }
+  }
+};

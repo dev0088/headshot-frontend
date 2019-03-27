@@ -29,8 +29,8 @@
             },
             "option": {
                 "type": "image",
-                "width": 160,
-                "height": 160,
+                "width": 350,
+                "height": 450,
                 "name": "New image",
                 "src": "/images/sample/transparentBg.png"
             }

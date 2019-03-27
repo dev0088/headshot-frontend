@@ -13,10 +13,6 @@ class HeadshotContainer extends Component {
     const { children } = this.props;
 
     return (
-      // <MuiThemeProvider theme={themeMaterial}>
-      //   <HeadshotScreen Layout={HeadshotHeader} children={children} />
-      // </MuiThemeProvider>
-
       <MuiThemeProvider theme={themeMaterial}>
         <div>
           <HeadshotScreen Layout={HeadshotHeader} />

@@ -20,6 +20,14 @@ import '../../styles/index.less';
 import Container from '../common/Container';
 import CommonButton from '../common/CommonButton';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import classNames from 'classnames';
+import withStyles from "@material-ui/core/styles/withStyles";
+import * as productionActions from '../../actions/productionActions';
+import { materialStyles } from '../../styles/material/index';
+
+
 const propertiesToInclude = [
     'id',
     'name',
@@ -82,8 +90,8 @@ class ImageMapEditor extends Component {
         selectedItem: null,
         zoomRatio: 1,
         canvasRect: {
-            width: 300,
-            height: 150,
+            width: 400, //300,
+            height: 500, //150,
         },
         preview: false,
         loading: false,
@@ -93,6 +101,7 @@ class ImageMapEditor extends Component {
         dataSources: [],
         editing: false,
         descriptors: {},
+        headshot: null
     }
 
     componentDidMount() {
@@ -121,6 +130,10 @@ class ImageMapEditor extends Component {
             },
             selectedItem: null,
         });
+    }
+
+    componentWillReceivedProps(nextProps) {
+        this.setState({headshot: nextProps.production.headshot});
     }
 
     canvasHandlers = {
@@ -509,8 +522,21 @@ class ImageMapEditor extends Component {
             });
         },
         onSaveImage: () => {
-            this.canvasRef.handlers.saveCanvasImage();
+            let fileName = this.props.production.fileName ? this.props.production.fileName : 'New file'
+            console.log('==== onSaveImage: this: ', this);
+            this.canvasRef.handlers.saveCanvasImage(
+                { name: fileName , format: 'image/jpg', quality: 1 }, 
+                this.props.production.headshot ? this.props.production.headshot.id : 1, 
+                this.canvasHandlers.onUploadImage    
+            );
         },
+        onUploadImage: (response, isFailed) => {
+            if (isFailed) {}
+            else {
+                this.props.productionActions.setProductionState({headshot: response, step: this.props.step + 1});
+                this.props.onChangeMenu('production');
+            }
+        }
     }
 
     transformList = () => {
@@ -684,4 +710,20 @@ class ImageMapEditor extends Component {
     }
 }
 
-export default ImageMapEditor;
+
+
+function mapStateToProps(state) {
+    const { production } = state;
+    return {
+        production
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        productionActions: bindActionCreators(productionActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageMapEditor);
+// export default ImageMapEditor;

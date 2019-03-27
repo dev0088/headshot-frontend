@@ -9,6 +9,10 @@ import rootReducer from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 export default (history) => {
+  const persistedFilter = createFilter(
+    'productions', 'production'
+  );
+
   const persistConfig = {
     key: 'root',
     storage,
