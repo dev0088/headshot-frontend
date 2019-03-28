@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 class HeadshotScreen extends Component {
 
   render = () => {
-    const { Layout, member, auth, memberLogout } = this.props;
+    const { Layout, member, auth, memberLogout, onChangeMenu } = this.props;
 
-    return <Layout member={member} auth={auth} logout={memberLogout} />;
+    return <Layout member={member} auth={auth} logout={memberLogout} onChangeMenu={onChangeMenu} />;
   }
 }
 

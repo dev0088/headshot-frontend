@@ -26,7 +26,10 @@ import classNames from 'classnames';
 import withStyles from "@material-ui/core/styles/withStyles";
 import * as productionActions from '../../actions/productionActions';
 import { materialStyles } from '../../styles/material/index';
-
+import ProductionSteper from '../production/ProductionSteper';
+import Grid from '@material-ui/core/Grid';
+import {default as MaterialButton} from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const propertiesToInclude = [
     'id',
@@ -527,15 +530,20 @@ class ImageMapEditor extends Component {
             this.canvasRef.handlers.saveCanvasImage(
                 { name: fileName , format: 'image/jpg', quality: 1 }, 
                 this.props.production.headshot ? this.props.production.headshot.id : 1, 
-                this.canvasHandlers.onUploadImage    
+                this.handlers.onUploadImage
             );
         },
         onUploadImage: (response, isFailed) => {
+            console.log('==== onUploadImage: ', isFailed);
             if (isFailed) {}
             else {
-                this.props.productionActions.setProductionState({headshot: response, step: this.props.step + 1});
-                this.props.onChangeMenu('production');
+                this.props.productionActions.setProductionState({headshot: response, step: 3});
+                this.props.onChangeMenu({key: 'production', productionId: this.props.production.production.id});
             }
+        },
+        onCancel: () => {
+            this.props.productionActions.setProductionState({step: 1});
+            this.props.onChangeMenu({key: 'production', productionId: this.props.production.production.id});
         }
     }
 
@@ -588,7 +596,11 @@ class ImageMapEditor extends Component {
             onChangeStyles,
             onChangeDataSources,
             onSaveImage,
+            onCancel
         } = this.handlers;
+
+        const { classes, production } = this.props;
+        console.log ('==== ImageMapEditor: ', this);
         const action = (
             <React.Fragment>
                 {/* <CommonButton
@@ -628,24 +640,52 @@ class ImageMapEditor extends Component {
                         />
                     )
                 } */}
-                <CommonButton
+                {/* <CommonButton
                     className="rde-action-btn"
                     shape="circle"
                     icon="image"
                     tooltipTitle="Save image"
                     onClick={onSaveImage}
                     tooltipPlacement="bottomRight"
-                />
+                /> */}
+                <MaterialButton
+                    variant="outlined"
+                    color="primary"
+                    size="samll"
+                    disabled={production.step === 0}
+                    className={classes.nextButton}
+                    onClick={onCancel}
+                >
+                    { 'Cancel' }
+                </MaterialButton>
+                <MaterialButton
+                    variant="contained"
+                    color="primary"
+                    size="samll"
+                    className={classNames([classes.nextButton, "rde-action-btn"])}
+                    onClick={onSaveImage}
+                >
+                    { 'Save & Upload' }
+                </MaterialButton>
             </React.Fragment>
         );
+        
         const titleContent = (
             <React.Fragment>
-                <span>{'Image Map Editor'}</span>
+                <ProductionSteper step={production.step} onChangeStep={onSaveImage} />
+            </React.Fragment>
+        );
+        const titleText = (
+            <React.Fragment>
+                <Typography className={classNames(classes.pageTitleText, classes.bold)}>
+                    {'Image Map Editor'}
+                </Typography>
             </React.Fragment>
         );
         const title = (
             <ImageMapTitle
-                title={titleContent}
+                title={titleText}
+                // content={titleContent}
                 action={action}
             />
         );
@@ -725,5 +765,6 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageMapEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(materialStyles)(ImageMapEditor));
+// export default connect(mapStateToProps, mapDispatchToProps)(ImageMapEditor);
 // export default ImageMapEditor;

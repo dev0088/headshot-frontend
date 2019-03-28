@@ -3,10 +3,9 @@ import apiConfig from '../constants/api';
 import * as types from './actionTypes'
 
 export const getAllProductions = () => {
-  let token = getToken();
   return ({
     [RSAA]: {
-      endpoint: `${apiConfig.url}/client/favorite/`,
+      endpoint: `${apiConfig.url}/productions/all`,
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,6 +30,15 @@ export const setStep = (setp) => {
 export const setProductionState = (state) => {
   return {
     type: types.SET_PRODUCTION_STATE,
+    payload: {
+      ...state
+    }
+  }
+};
+
+export const initProductionState = (state) => {
+  return {
+    type: types.INIT_PRODUCTION_STATE,
     payload: {
       ...state
     }

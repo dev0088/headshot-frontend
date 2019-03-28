@@ -59,7 +59,7 @@ class App extends Component {
 
     return (
           (current === 'imagemap') ? (
-            <HeadshotImageEditorContainer>
+            <HeadshotImageEditorContainer onChangeMenu={this.onChangeMenu}>
               <div className="rde-main">
                 {/* <Helmet>
                   <meta charSet="utf-8" />
@@ -75,7 +75,7 @@ class App extends Component {
               </div>              
             </HeadshotImageEditorContainer>
           ) : (
-            <HeadshotContainer>
+            <HeadshotContainer onChangeMenu={this.onChangeMenu}>
               { currentPage }
             </HeadshotContainer>        
           )

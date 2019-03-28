@@ -8,6 +8,7 @@ const initialState = {
   hasImage: false,
   uploadImageUrl: null,
   fileName: '',
+  paid: false
 };
 
 export function productionStateReducer (state = initialState, action) {
@@ -15,6 +16,10 @@ export function productionStateReducer (state = initialState, action) {
     case types.SET_PRODUCTION_STATE:
       return Object.assign({}, state, {
         ...action.payload
+      });
+    case types.INIT_PRODUCTION_STATE:
+      return Object.assign({}, state, {
+        ...initialState
       });
     default:
       return state;

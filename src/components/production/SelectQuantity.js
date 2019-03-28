@@ -17,7 +17,6 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import * as appUtils from '../../utils/appUtils';
 import { materialStyles } from '../../styles/material/index';
 
-
 class SelectQuantity extends Component {
   state = {
     order: this.props.order,
@@ -59,6 +58,7 @@ class SelectQuantity extends Component {
             { production.description }
           </Typography>
         </Grid>
+        
         <Grid item xs={4}>
           <Typography className={classNames(classes.itemTitleText)}>
             { `I am placing a:` }

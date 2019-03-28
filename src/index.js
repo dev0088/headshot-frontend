@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import configureStore from './store';
 import registerServiceWorker from './registerServiceWorker';
+// import { StripeProvider } from "react-stripe-elements";
 
 // const root = document.createElement('div');
 // root.id = 'root';
@@ -43,13 +44,16 @@ document.body.appendChild(root);
 const render = (Component) => {
     const rootElement = document.getElementById('root');
     ReactDom.render(
+        // <StripeProvider apiKey={"pk_test_3MJjMu9cCoQbihWg8Sw8dqUM"}>
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                <AppContainer>
-                    <Component />
-                </AppContainer>
+                    <AppContainer>
+                        <Component />
+                    </AppContainer>
             </PersistGate>
-        </Provider>,
+        </Provider>
+        // </StripeProvider>
+        ,
         rootElement,
     );
 };

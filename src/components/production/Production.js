@@ -16,11 +16,12 @@ import Spacer from '../common/material/spacer';
 import ProductionSteper from './ProductionSteper';
 import SelectQuantity from './SelectQuantity';
 import CloudinaryUploader from './CloudinaryUploader';
-import ProductionUpload from './ProductionUpload';
+import ProductionUserInfo from './ProductionUserInfo';
+import ProductionReview from './ProductionReview';
+import StripeCheckoutButton from './stripe/StripeCheckoutButton';
 import * as appUtils from '../../utils/appUtils';
 import * as productionActions from '../../actions/productionActions';
 import { materialStyles } from '../../styles/material/index';
-
 
 
 class Production extends Component {
@@ -33,7 +34,9 @@ class Production extends Component {
     hasImage: false,
     uploadImageUrl: null,
     fileName: '',
-    headshot: null
+    email: '',
+    headshot: null,
+    paid: false
   };
 
   componentWillMount() {
@@ -41,6 +44,7 @@ class Production extends Component {
       loading: true,
       step: 0,
       headshot: null,
+      ...this.props.production
     }, () => {
       HeadshotAPI.getProduction(this.props.productionId, this.handleGetProductionResponse);
     });
@@ -72,11 +76,13 @@ class Production extends Component {
   }
 
   handleNext = () => {
-    if (this.state.step === 1) {
+    const { step, paid } = this.state;
+    if (step === 1) {
       // Create new headshot
       this.setState({loading: true}, () => {
-        const { fileName, uploadImageUrl, quantityId } = this.state;
+        const { email, fileName, uploadImageUrl, quantityId } = this.state;
         let data = {
+          "email": email,
           "file_name": fileName,
           "quantity": quantityId,
           "status": "Draft"
@@ -85,9 +91,12 @@ class Production extends Component {
       });
     } else {
       this.setState({
-        step: this.state.step + 1,
+        step: step + 1,
       }, () => {
         this.props.productionActions.setProductionState(this.state);
+        if (paid) {
+          this.props.onChangeMenu({key: 'productions'});    
+        }
       });  
     }
   };
@@ -118,6 +127,24 @@ class Production extends Component {
     });
   }
 
+  handleCheckout = (token, isFailed) => {
+    if(isFailed) {}
+    else {
+      this.setState({loading: true}, () => {
+        this.props.productionActions.setProductionState(this.state);
+      });
+    }
+  }
+
+  handlePayment = (response, isFailed) => {
+    if(isFailed) {}
+    else {
+      this.setState({loading: false, paid: true, step: this.state.step + 1}, () => {
+        this.props.productionActions.setProductionState(this.state);
+      });
+    }
+  }
+
   renderStepForm = () => {
     const { production, step, order, quantityId, hasImage } = this.state;
     switch (step) {
@@ -130,19 +157,36 @@ class Production extends Component {
                 onChangeOrder={this.handleChangeOrder}
               />;
       case 1:
-        return <ProductionUpload hasImage={hasImage} onChange={this.handleChange} />;
+        return <ProductionUserInfo hasImage={hasImage} onChange={this.handleChange} />;
       case 2:
         return this.props.onChangeMenu({key: 'imagemap', productionId: production.id});
+      case 3: 
+        return <ProductionReview />;
       default:
-        return 'Unknown stepIndex';
+        return <ProductionReview />;
     }
   }
 
   render = () => {
     const { classes } = this.props;
-    const { loading, production, step, quantityId } = this.state;
+    const { loading, production, step, quantityId, headshot, paid } = this.state;
     console.log('==== production: ', this);
+    let amount = 0;
+    let price = 0;
+    let fileName = headshot ?  headshot.file_name : '';
+    let imageUrl = headshot ? headshot.cloudinary_image_secure_url : '';
     let productionQuantities = [];
+    // Get current quantity
+    let currentQuantity = null;
+    if (production && production.production_quantities) {
+      currentQuantity = production.production_quantities.find(quantity => {
+        return quantity.id === quantityId;
+      });
+    }
+    if (currentQuantity) {
+      amount = currentQuantity.amount;
+      price = parseFloat(currentQuantity.plus_price);
+    }
 
     if (!(production && production.production_quantities)) {
       return (
@@ -182,15 +226,26 @@ class Production extends Component {
                 >
                   { 'Back' }
                 </Button>
-                <Button
-                 variant="contained"
-                  color="primary"
-                  size="samll"
-                  className={classes.nextButton}
-                  onClick={this.handleNext}
-                >
-                  { (step === appUtils.getSteps().length - 1) ? 'Finish' : 'Next' }
-                </Button>
+                {
+                  ((step === appUtils.getSteps().length - 1) && !paid) ? (
+                    <StripeCheckoutButton 
+                      headshot={headshot} 
+                      amount={price} 
+                      onCheckout={this.handleCheckout} 
+                      onPayment={this.handlePayment}
+                    />
+                  ) : (
+                    <Button
+                    variant="contained"
+                     color="primary"
+                     size="samll"
+                     className={classes.nextButton}
+                     onClick={this.handleNext}
+                   >
+                     { paid ? 'Finish' : 'Next' }
+                   </Button>
+                  )
+                }
               </Grid>
               <Grid item xs={12}>
                 <ProductionSteper step={step} onChangeStep={this.handleChangeStep} />

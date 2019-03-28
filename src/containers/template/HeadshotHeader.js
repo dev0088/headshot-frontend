@@ -91,28 +91,33 @@ class HeadshotHeader extends Component {
     return null
   }
 
-  renderTopbarMenuItem(title, link) {
+  renderTopbarMenuItem(title, key) {
     const { classes } = this.props;
     return (
-      <Link to={link} style={{display: 'inline-block'}}>
+      <div style={{display: 'inline-block'}} onClick={() => this.handleClickListItem(key)}>
         <Typography
           className={classNames(classes.menuItemText, classes.topbarMenuItemTitle, classes.topbarDynamicShow)}
         >
           {title}
         </Typography>
-      </Link>
+      </div>
     )
   }
 
-  renderDrawerListItem(title, link) {
+  renderDrawerListItem(title, key) {
     return (
-      <Link to={link} onClick={this.handleDrawerClose}>
+      <div onClick={() => this.handleClickListItem(key)}>
         <ListItem button>
           <ListItemText primary={title} />
         </ListItem>
-      </Link>
+      </div>
     );
   }
+
+  handleClickListItem = (key) => {
+    this.setState({ open: false });
+    if (this.props.onChangeMenu) this.props.onChangeMenu({key})
+  };
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -208,8 +213,11 @@ class HeadshotHeader extends Component {
                 alt="Logo"
                 src={require('../../images/logo.jpg')} 
               />
+              <div className={classes.whitSpacer}/>
+              <div className={classNames(classes.grow, classes.topbarDynamicShow, )}>
+                {this.renderTopbarMenuItem('Productions', 'productions')}
+              </div>
             </Hidden>
-
             <div className={classes.grow}/>
           </Toolbar>
         </AppBar>
@@ -235,6 +243,7 @@ class HeadshotHeader extends Component {
           </div>
           <Divider />
           <List>
+            {this.renderDrawerListItem('Productions', 'productions')}
           </List>
         </Drawer>
       </div>

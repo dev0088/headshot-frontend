@@ -12,7 +12,7 @@ static processResponse(response, handleResponse) {
   else {
     if (response){
       console.log('success: ', response);
-      handleResponse(response, false);
+      if (handleResponse) handleResponse(response, false);
     } else {
       console.log('error: ', response);
       if (handleResponse) handleResponse(response.error, true);

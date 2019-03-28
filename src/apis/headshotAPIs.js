@@ -21,8 +21,11 @@ class HeadshotAPI {
   }
 
   static uploadHeadshotImage(headshotId, data, handleResponse) {
-    console.log('==== data: ', data);
     CommonAPI.processRequestWithFile(`headshot/upload/${headshotId}/`, 'put', data, handleResponse);
+  }
+
+  static createPayment(headshotId, data, handleResponse) {
+    CommonAPI.processRequest(`headshot/charge/${headshotId}/`, 'post', data, handleResponse);
   }
 
   // static saveProfile(userId, data, handleResponse) {

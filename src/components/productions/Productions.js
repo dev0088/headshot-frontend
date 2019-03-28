@@ -4,6 +4,8 @@ import { ResizeSensor } from 'css-element-queries';
 import i18n from 'i18next';
 import { Popconfirm, message, Button } from 'antd';
 import storage from 'store/storages/localStorage';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from '@material-ui/core/Grid';
@@ -21,6 +23,7 @@ import HeadshotAPI from '../../apis/headshotAPIs'
 import { materialStyles } from '../../styles/material/index';
 import Spacer from '../common/material/spacer';
 import * as appUtils from '../../utils/appUtils';
+import * as productionActions from '../../actions/productionActions';
 
 
 class Productions extends Component {
@@ -40,6 +43,7 @@ class Productions extends Component {
     };
 
     handleClickGallery = (productionId) => {
+        this.props.productionActions.initProductionState();
         this.props.onChangeMenu({key: 'production', productionId});
     };
 
@@ -86,4 +90,19 @@ class Productions extends Component {
     }
 }
 
-export default withStyles(materialStyles)(Productions);
+function mapStateToProps(state) {
+    const { productions, production } = state;
+    return {
+        productions,
+        production
+    }
+}
+  
+function mapDispatchToProps(dispatch) {
+    return {
+        productionActions: bindActionCreators(productionActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(materialStyles)(Productions));
+// export default withStyles(materialStyles)(Productions);

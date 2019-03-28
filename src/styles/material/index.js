@@ -37,6 +37,9 @@ export const materialStyles = theme => ({
   brandImage: {
     height: 40,
   },
+  rootAutoScroll: {
+    overflow: 'auto'
+  },
   brandTitle: {
     paddingLeft: '8px',
     paddingRight: '8px',
@@ -507,6 +510,10 @@ export const materialStyles = theme => ({
     fontSize: '1.35rem',
     fontWeight: 600
   },
+  itemSubTitleText: {
+    fontSize: '1.2rem',
+    fontWeight: 600
+  },
   generalDescriptionText: {
     color: theme.palette.black.main,
     fontSize: '1rem',
@@ -516,20 +523,22 @@ export const materialStyles = theme => ({
     width: '100%',
     height: 'auto'
   },
-
   nextButton: {
     margin: theme.spacing.unit,
   },
-
   orderRadioGroup: {
     margin: `${theme.spacing.unit}px 0`,
   },
-
   orderRadio: {
     marginLeft: 0,
     marginRight: 40
   },
-
+  listItems: {
+    marginLeft: 20
+  },
+  whitSpacer: {
+    width: 50
+  },
 
   talentVideoInterviewBody: {
     fontSize: '1.5rem',
@@ -1464,6 +1473,11 @@ export const themeMaterial = createMuiTheme ({
       light: blue[400],
       dark: blue[900]
     }
+  },
+  '@global': {
+    body: {
+      overflow: 'auto'
+    },
   },
   typography: {
     fontFamily: fontFamily,

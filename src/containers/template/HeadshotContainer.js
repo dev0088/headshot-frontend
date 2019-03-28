@@ -10,19 +10,19 @@ import { themeMaterial } from '../../styles/material/index';
 
 class HeadshotContainer extends Component {
   render () {
-    const { children } = this.props;
+    const { children, onChangeMenu } = this.props;
 
     return (
       <MuiThemeProvider theme={themeMaterial}>
         <div>
-          <HeadshotScreen Layout={HeadshotHeader} />
+          <HeadshotScreen Layout={HeadshotHeader} onChangeMenu={onChangeMenu}/>
           <Grid container spacing={24}>
             <Grid item xs={12}><Spacer size={30}/></Grid>
             <Grid item xl={2} lg={2} md={1} sm={1} xs={1} />
             <Grid item xl={8} lg={8} md={10} sm={10} xs={10} >
                 <Container fluid>
-                {children}
-              </Container>
+                  {children}
+                </Container>
             </Grid>
             <Grid item xl={2} lg={2} md={1} sm={1} xs={1} />
           </Grid>
