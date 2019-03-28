@@ -28,7 +28,7 @@ import Divider from '@material-ui/core/Divider';
 import ImageLoader from 'react-loading-image';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { materialStyles } from '../../styles/material/index';
+import materialStyles from '../../styles/material';
 
 
 class HeadshotHeader extends Component {
@@ -49,12 +49,11 @@ class HeadshotHeader extends Component {
   }
 
   componentDidMount() {
-    
   }
 
   hanldeClickLogout = () => {
-    // this.props.logout(this.props.auth.access.token);
-    // this.props.history.push('/login')
+    this.props.logout(this.props.auth.access.token);
+    this.props.history.push('/login')
   };
 
   handleClick = event => {
@@ -64,11 +63,11 @@ class HeadshotHeader extends Component {
   };
 
   handleClickLogin = () => {
-    // this.props.history.push('/login')
+    this.props.history.push('/login')
   };
 
   handleClickSignUp = () => {
-    // this.props.history.push('/sign-up')
+    this.props.history.push('/sign-up')
   };
 
   handleMenuClose = () => {
@@ -87,33 +86,38 @@ class HeadshotHeader extends Component {
   };
 
   getUserAvatarFromProps() {
-    // const { clientInfo } = this.props
+    const { clientInfo } = this.props
 
     return null
   }
 
-  // renderTopbarMenuItem(title, link) {
-  //   const { classes } = this.props;
-  //   return (
-  //     <Link to={link} style={{display: 'inline-block'}}>
-  //       <Typography
-  //         className={classNames(classes.menuItemText, classes.topbarMenuItemTitle, classes.topbarDynamicShow)}
-  //       >
-  //         {title}
-  //       </Typography>
-  //     </Link>
-  //   )
-  // }
+  renderTopbarMenuItem(title, key) {
+    const { classes } = this.props;
+    return (
+      <div style={{display: 'inline-block'}} onClick={() => this.handleClickListItem(key)}>
+        <Typography
+          className={classNames(classes.menuItemText, classes.topbarMenuItemTitle, classes.topbarDynamicShow)}
+        >
+          {title}
+        </Typography>
+      </div>
+    )
+  }
 
-  // renderDrawerListItem(title, link) {
-  //   return (
-  //     <Link to={link} onClick={this.handleDrawerClose}>
-  //       <ListItem button>
-  //         <ListItemText primary={title} />
-  //       </ListItem>
-  //     </Link>
-  //   );
-  // }
+  renderDrawerListItem(title, key) {
+    return (
+      <div onClick={() => this.handleClickListItem(key)}>
+        <ListItem button>
+          <ListItemText primary={title} />
+        </ListItem>
+      </div>
+    );
+  }
+
+  handleClickListItem = (key) => {
+    this.setState({ open: false });
+    if (this.props.onChangeMenu) this.props.onChangeMenu({key})
+  };
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -135,26 +139,44 @@ class HeadshotHeader extends Component {
   };
 
   handleSearch = () => {
-    // let data = {
-    //   talent_name_or_tid: this.state.search
-    // };
+    let data = {
+      talent_name_or_tid: this.state.search
+    };
     // this.props.clientActions.talentSearch(data);
     // this.props.history.push('/client/talent_search_result');
   };
 
   render() {
-    const { auth, children, classes } = this.props;
-    console.log('==== props: ', this.props);
+    const { auth, clientInfo, classes } = this.props;
     const { anchorEl, mobileMoreAnchorEl, open } = this.state;
     const openAnchor = Boolean(anchorEl);
     const loggedIn = (auth && auth.access && auth.access.email);
     let username = "";
     let userAvatar = null;
 
+    if (loggedIn) {
+      if (clientInfo){
+        username = clientInfo.user.first_name;
+        if (username !== "")
+          username = username.charAt(0).toUpperCase() + username.slice(1);
+        userAvatar = this.getUserAvatarFromProps()
+      }
+    }
+
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const renderMenu = 
+    const renderMenu = loggedIn ? (
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMenuOpen}
+        onClose={this.handleMenuClose}
+      >
+        <MenuItem onClick={this.hanldeClickLogout}>{"Logout"}</MenuItem>
+      </Menu>
+    ) : (
       <Menu
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -164,21 +186,6 @@ class HeadshotHeader extends Component {
       >
         <MenuItem onClick={this.handleClickLogin}>{"Login"}</MenuItem>
         <MenuItem onClick={this.handleClickSignUp}>{"Sign Up"}</MenuItem>
-      </Menu>
-
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMobileMenuClose}
-      >
-        <MenuItem onClick={this.handleClickLogin}>
-          <Button color="inherit" onClick={this.handleClick}>
-            <AccountCircle />
-          </Button>
-        </MenuItem>
       </Menu>
     );
 
@@ -202,37 +209,19 @@ class HeadshotHeader extends Component {
               >
                 {'Headshot'}
               </Typography>
-                <img className={classes.brandImage}
-                  alt="Logo"
-                  src={require('../../images/logo.jpg')} 
-                />
-              <div className={classNames(classes.grow, classes.topbarDynamicShow)}>
-                {/* {this.renderTopbarMenuItem('Home', '/client/home')}
-                {this.renderTopbarMenuItem('Find Talent', '/client/talent_search')}
-                {this.renderTopbarMenuItem('Casting Requests', '/client/request_selection')}
-                {this.renderTopbarMenuItem('Saved Talent', '/client/mytalent/saved')}
-                {this.renderTopbarMenuItem('Shared Profiles', '/client/myshared_profile')}
-                {this.renderTopbarMenuItem('Blocked Profiles', '/client/blocked_profile')}
-                {this.renderTopbarMenuItem('Ratings', '/client/my_rate')} */}
+              <img className={classes.brandImage}
+                alt="Logo"
+                src={require('../../images/logo.jpg')} 
+              />
+              <div className={classes.whitSpacer}/>
+              <div className={classNames(classes.grow, classes.topbarDynamicShow, )}>
+                {this.renderTopbarMenuItem('Productions', 'productions')}
               </div>
             </Hidden>
-
             <div className={classes.grow}/>
-             <div>
-                <Button color="inherit" onClick={this.handleClick}>
-                  <IconButton
-                    aria-owns={openAnchor ? 'menu-appbar' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleClick}
-                    color="inherit">
-                      <AccountCircle />
-                  </IconButton>
-                </Button>
-              </div>
-  
           </Toolbar>
         </AppBar>
-        {renderMenu}
+
         <Drawer
           className={classes.drawer}
           variant="persistent"
@@ -243,35 +232,24 @@ class HeadshotHeader extends Component {
           }}
         >
           <div className={classes.drawerHeader}>
-            <img className={classes.drawerBandImage}
+            <img 
+              className={classes.drawerBandImage}
               alt="Logo"
               src={require('../../images/logo.jpg')} 
             />
-            {/* <IconButton onClick={this.handleDrawerClose}>
+            <IconButton onClick={this.handleDrawerClose}>
               {<ChevronLeftIcon />}
-            </IconButton> */}
+            </IconButton>
           </div>
           <Divider />
           <List>
-            {/* {this.renderDrawerListItem('Home', '/client/home')}
-            {this.renderDrawerListItem('Find Talent', '/client/talent_search')}
-            {this.renderDrawerListItem('Casting Requests', '/client/request_selection')}
-            {this.renderDrawerListItem('Saved Talent', '/client/mytalent/saved')}
-            {this.renderDrawerListItem('Shared Profiles', '/client/myshared_profile')}
-            {this.renderDrawerListItem('Blocked Profiles', '/client/blocked_profile')}
-            {this.renderDrawerListItem('Ratings', '/client/my_rate')} */}
+            {this.renderDrawerListItem('Productions', 'productions')}
           </List>
         </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {children}
-        </main>
       </div>
     )
   }
 }
-
-// export default withStyles(materialStyles, { withTheme: true })(HeadshotHeader);
 
 export default compose(withStyles(materialStyles, { withTheme: true }),
   withWidth(),)(HeadshotHeader);

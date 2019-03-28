@@ -8,6 +8,26 @@ class HeadshotAPI {
     CommonAPI.processRequest(`productions/all`, 'get', null, handleResponse);
   }
 
+  static getProduction(productionId, handleResponse) {
+    CommonAPI.processRequest(`productions/${productionId}`, 'get', null, handleResponse);
+  }
+
+  static createHeadshot(data, handleResponse) {
+    CommonAPI.processRequest(`headshot/create`, 'post', data, handleResponse);
+  }
+
+  static deleteHeadshot(headshottId, handleResponse) {
+    CommonAPI.processRequest(`headshot/${headshottId}/`, 'delete', null, handleResponse);
+  }
+
+  static uploadHeadshotImage(headshotId, data, handleResponse) {
+    CommonAPI.processRequestWithFile(`headshot/upload/${headshotId}/`, 'put', data, handleResponse);
+  }
+
+  static createPayment(headshotId, data, handleResponse) {
+    CommonAPI.processRequest(`headshot/charge/${headshotId}/`, 'post', data, handleResponse);
+  }
+
   // static saveProfile(userId, data, handleResponse) {
   //   this.processRequestWithToken(`talent/${userId}`, 'put', data, handleResponse);
   // }

@@ -20,6 +20,17 @@ import '../../styles/index.less';
 import Container from '../common/Container';
 import CommonButton from '../common/CommonButton';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import classNames from 'classnames';
+import withStyles from "@material-ui/core/styles/withStyles";
+import * as productionActions from '../../actions/productionActions';
+import { materialStyles } from '../../styles/material/index';
+import ProductionSteper from '../production/ProductionSteper';
+import Grid from '@material-ui/core/Grid';
+import {default as MaterialButton} from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 const propertiesToInclude = [
     'id',
     'name',
@@ -82,8 +93,8 @@ class ImageMapEditor extends Component {
         selectedItem: null,
         zoomRatio: 1,
         canvasRect: {
-            width: 300,
-            height: 150,
+            width: 400, //300,
+            height: 500, //150,
         },
         preview: false,
         loading: false,
@@ -93,6 +104,7 @@ class ImageMapEditor extends Component {
         dataSources: [],
         editing: false,
         descriptors: {},
+        headshot: null
     }
 
     componentDidMount() {
@@ -121,6 +133,10 @@ class ImageMapEditor extends Component {
             },
             selectedItem: null,
         });
+    }
+
+    componentWillReceivedProps(nextProps) {
+        this.setState({headshot: nextProps.production.headshot});
     }
 
     canvasHandlers = {
@@ -509,8 +525,26 @@ class ImageMapEditor extends Component {
             });
         },
         onSaveImage: () => {
-            this.canvasRef.handlers.saveCanvasImage();
+            let fileName = this.props.production.fileName ? this.props.production.fileName : 'New file'
+            console.log('==== onSaveImage: this: ', this);
+            this.canvasRef.handlers.saveCanvasImage(
+                { name: fileName , format: 'image/jpg', quality: 1 }, 
+                this.props.production.headshot ? this.props.production.headshot.id : 1, 
+                this.handlers.onUploadImage
+            );
         },
+        onUploadImage: (response, isFailed) => {
+            console.log('==== onUploadImage: ', isFailed);
+            if (isFailed) {}
+            else {
+                this.props.productionActions.setProductionState({headshot: response, step: 3});
+                this.props.onChangeMenu({key: 'production', productionId: this.props.production.production.id});
+            }
+        },
+        onCancel: () => {
+            this.props.productionActions.setProductionState({step: 1});
+            this.props.onChangeMenu({key: 'production', productionId: this.props.production.production.id});
+        }
     }
 
     transformList = () => {
@@ -562,10 +596,14 @@ class ImageMapEditor extends Component {
             onChangeStyles,
             onChangeDataSources,
             onSaveImage,
+            onCancel
         } = this.handlers;
+
+        const { classes, production } = this.props;
+        console.log ('==== ImageMapEditor: ', this);
         const action = (
             <React.Fragment>
-                <CommonButton
+                {/* <CommonButton
                     className="rde-action-btn"
                     shape="circle"
                     icon="file-download"
@@ -601,25 +639,53 @@ class ImageMapEditor extends Component {
                             onClick={onUpload}
                         />
                     )
-                }
-                <CommonButton
+                } */}
+                {/* <CommonButton
                     className="rde-action-btn"
                     shape="circle"
                     icon="image"
                     tooltipTitle="Save image"
                     onClick={onSaveImage}
                     tooltipPlacement="bottomRight"
-                />
+                /> */}
+                <MaterialButton
+                    variant="outlined"
+                    color="primary"
+                    size="samll"
+                    disabled={production.step === 0}
+                    className={classes.nextButton}
+                    onClick={onCancel}
+                >
+                    { 'Cancel' }
+                </MaterialButton>
+                <MaterialButton
+                    variant="contained"
+                    color="primary"
+                    size="samll"
+                    className={classNames([classes.nextButton, "rde-action-btn"])}
+                    onClick={onSaveImage}
+                >
+                    { 'Save & Upload' }
+                </MaterialButton>
             </React.Fragment>
         );
+        
         const titleContent = (
             <React.Fragment>
-                <span>{'Image Map Editor'}</span>
+                <ProductionSteper step={production.step} onChangeStep={onSaveImage} />
+            </React.Fragment>
+        );
+        const titleText = (
+            <React.Fragment>
+                <Typography className={classNames(classes.pageTitleText, classes.bold)}>
+                    {'Image Map Editor'}
+                </Typography>
             </React.Fragment>
         );
         const title = (
             <ImageMapTitle
-                title={titleContent}
+                title={titleText}
+                // content={titleContent}
                 action={action}
             />
         );
@@ -684,4 +750,21 @@ class ImageMapEditor extends Component {
     }
 }
 
-export default ImageMapEditor;
+
+
+function mapStateToProps(state) {
+    const { production } = state;
+    return {
+        production
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        productionActions: bindActionCreators(productionActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(materialStyles)(ImageMapEditor));
+// export default connect(mapStateToProps, mapDispatchToProps)(ImageMapEditor);
+// export default ImageMapEditor;

@@ -13,24 +13,33 @@ import CanvasObjects from './CanvasObjects';
 import OrthogonalLink from '../workflow/link/OrthogonalLink';
 import CurvedLink from '../workflow/link/CurvedLink';
 import Arrow from './Arrow';
+import HeadshotAPI from '../../apis/headshotAPIs';
 
 import '../../styles/core/tooltip.less';
 import '../../styles/core/contextmenu.less';
 
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import classNames from 'classnames';
+// import withStyles from "@material-ui/core/styles/withStyles";
+// import * as productionActions from '../../actions/productionActions';
+// import { materialStyles } from '../../styles/material/index';
+
+
 const defaultCanvasOption = {
     preserveObjectStacking: true,
-    width: 300,
-    height: 150,
+    width: 80, //300,
+    height: 100, //150,
     selection: true,
     defaultCursor: 'default',
     backgroundColor: '#fff',
 };
 
 const defaultWorkareaOption = {
-    width: 600,
-    height: 400,
-    workareaWidth: 600,
-    workareaHeight: 400,
+    width: 400, //600,
+    height: 500, //400,
+    workareaWidth: 400, //600,
+    workareaHeight: 500, //400,
     lockScalingX: true,
     lockScalingY: true,
     scaleX: 1,
@@ -1073,7 +1082,7 @@ class Canvas extends Component {
             let dataUrl;
             let target = targetObject;
             if (target) {
-                dataUrl = target.toDataURL(option);
+                dataUrl = target.toDataURL('image/jpeg');
             } else {
                 target = this.canvas.getActiveObject();
                 if (target) {
@@ -1089,15 +1098,23 @@ class Canvas extends Component {
                 anchorEl.remove();
             }
         },
-        saveCanvasImage: (option = { name: 'New Image', format: 'png', quality: 1 }) => {
-            const dataUrl = this.canvas.toDataURL(option);
+        saveCanvasImage: (option, headshotId, handleUploadResponse) => {
+            let opt = option ? option : { name: 'New Image', format: 'image/jpg', quality: 1 };
+            const dataUrl = this.canvas.toDataURL('image/jpg').replace("data:image/jpg;base64,", "")
             if (dataUrl) {
-                const anchorEl = document.createElement('a');
-                anchorEl.href = dataUrl;
-                anchorEl.download = `${option.name}.png`;
-                document.body.appendChild(anchorEl); // required for firefox
-                anchorEl.click();
-                anchorEl.remove();
+                // download image into local
+                // const anchorEl = document.createElement('a');
+                // anchorEl.href = dataUrl;
+                // anchorEl.download = `${option.name}.png`;
+                // document.body.appendChild(anchorEl); // required for firefox
+                // anchorEl.click();
+                // anchorEl.remove();
+
+                // Upload image to cloudinary via server
+                let data = new FormData();
+                data.append('fileName', opt.name);
+                data.append('file', dataUrl);
+                HeadshotAPI.uploadHeadshotImage(headshotId, data, handleUploadResponse);
             }
         },
     }
@@ -4068,5 +4085,22 @@ class Canvas extends Component {
         );
     }
 }
+
+
+// function mapStateToProps(state) {
+//     const { productions, production } = state;
+//     return {
+//         productions,
+//         production
+//     }
+// }
+
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         productionActions: bindActionCreators(productionActions, dispatch)
+//     }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
 
 export default Canvas;
