@@ -11,8 +11,7 @@ ENV PATH /usr/src/headshot_frontend/node_modules/.bin:$PATH
 # install and cache headshot_frontend dependencies
 COPY package.json /usr/src/headshot_frontend/package.json
 RUN yarn install
-# RUN npm install react-scripts@1.1.1 -g --silent
-# RUN npm run build
+RUN yarn run build
 
 # start app
-CMD ["yarn, "start"]
+CMD ["yarn, "start:dev"]
