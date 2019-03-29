@@ -12,7 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
 import ImageLoader from 'react-loading-image';
 import HeadshotAPI from '../../apis/headshotAPIs';
-import Spacer from '../common/material/spacer';
+import Spacer from '../common/material/Spacer';
 import ProductionSteper from './ProductionSteper';
 import SelectQuantity from './SelectQuantity';
 import CloudinaryUploader from './CloudinaryUploader';

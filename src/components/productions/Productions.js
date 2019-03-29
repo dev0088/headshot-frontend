@@ -21,7 +21,7 @@ import ImageLoader from 'react-loading-image';
 import Container from '../common/Container';
 import HeadshotAPI from '../../apis/headshotAPIs'
 import { materialStyles } from '../../styles/material/index';
-import Spacer from '../common/material/spacer';
+import Spacer from '../common/material/Spacer';
 import * as appUtils from '../../utils/appUtils';
 import * as productionActions from '../../actions/productionActions';
 

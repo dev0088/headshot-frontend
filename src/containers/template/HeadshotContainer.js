@@ -5,7 +5,7 @@ import { MuiThemeProvider, } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import HeadshotScreen from './HeadshotScreen';
 import HeadshotHeader from './HeadshotHeader';
-import Spacer from '../../components/common/material/spacer';
+import Spacer from '../../components/common/material/Spacer';
 import { themeMaterial } from '../../styles/material/index';
 
 class HeadshotContainer extends Component {
