@@ -58,7 +58,7 @@ class Productions extends Component {
                     key={production.id}
                 >
                     <ImageLoader
-                      className={classes.productionGalleryImage}
+                      className={classes.productionsGalleryImage}
                       src={appUtils.generateImageUrl(production.gallery_image)}
                       loading={() => <CircularProgress size={20} thickness={5} />}
                       error={() => <img src={require("../../images/missing.png")} />} 
