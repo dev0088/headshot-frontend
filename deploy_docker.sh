@@ -5,7 +5,7 @@ docker-compose down
 docker-compose stop
 
 # Re-build npm on local
-nvm use 9.8.0
+nvm use 11.2.0
 npm install
 npm run build
 
