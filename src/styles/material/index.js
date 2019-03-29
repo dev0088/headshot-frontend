@@ -519,6 +519,10 @@ export const materialStyles = theme => ({
     fontSize: '1rem',
     fontWeight: 400
   },
+  productionsGalleryImage: {
+    width: '100%',
+    height: '100%'
+  },
   productionGalleryImage: {
     width: '100%',
     height: 'auto'
