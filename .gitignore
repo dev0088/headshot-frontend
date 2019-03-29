@@ -4,3 +4,7 @@ yarn.lock
 .env
 yarn-error.log
 public/precache-manifest*
+public/js
+public/fonts
+public/sw.js
+public/index.html
