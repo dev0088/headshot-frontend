@@ -33,6 +33,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
+      # - run: yarn test
       - run: yarn build
 
     deploy:
@@ -42,22 +43,26 @@ jobs:
         - add_ssh_keys:
             fingerprints:
               - $TARGET_SERVER_SSH_FINGERPRINT
+            
         - run:
-            name: Deploy nine-db from docker repository to server
+            name: Deploy build result to server
             command: |
-              ssh -o StrictHostKeyChecking=no \
-                $TARGET_SERVER_USER_NAME@$TARGET_SERVER_ADDRESS \
-                "/bin/bash $DEPLOYMENT_SCRIPT_FILE_PATH"
+              scp -o StrictHostKeyChecking=no \ 
+                ./public $TARGET_SERVER_USER_NAME@$TARGET_SERVER_ADDRESS:/home/headhost/
+            # command: |
+            #   ssh -o StrictHostKeyChecking=no \
+            #     $TARGET_SERVER_USER_NAME@$TARGET_SERVER_ADDRESS \
+            #     "/bin/bash $DEPLOYMENT_SCRIPT_FILE_PATH"
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      # - deploy:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
