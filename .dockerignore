@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+yarn.lock
+.env
+yarn-error.log
+public/precache-manifest*
+docker-compose.yml
+Dockerfile

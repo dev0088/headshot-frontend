@@ -10,8 +10,12 @@ ENV PATH /usr/src/headshot_frontend/node_modules/.bin:$PATH
 
 # install and cache headshot_frontend dependencies
 COPY package.json /usr/src/headshot_frontend/package.json
+COPY . /usr/src/headshot_frontend
+RUN cd /usr/src/headshot_frontend/
 RUN yarn install
 RUN yarn run build
 
+EXPOSE 8080
+
 # start app
-CMD ["yarn, "start:dev"]
+CMD ["yarn, "start"]
