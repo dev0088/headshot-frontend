@@ -14,3 +14,14 @@ services:
       - '8080:8080'
     environment:
       - NODE_ENV=development
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          #docker-compose v3+ do not use ip_range
+          ip_range: 172.20.0.2/24
