@@ -3,7 +3,10 @@
 # Stop existing docker
 docker-compose down
 docker-compose stop
-
+echo y | docker container prune
+echo y | docker image prune
+echo y | docker network prune
+echo y | docker volume prune
 # Re-build npm on local
 nvm use 11.2.0
 yarn install

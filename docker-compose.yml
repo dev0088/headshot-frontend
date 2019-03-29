@@ -16,7 +16,7 @@ services:
       - NODE_ENV=development
     networks:
       static-network:
-        ipv4_address: 172.20.128.2
+        ipv4_address: 172.20.0.2
 
 networks:
   static-network:
