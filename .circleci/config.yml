@@ -48,7 +48,7 @@ jobs:
             name: Deploy build result to server
             command: |
               scp -o StrictHostKeyChecking=no \ 
-                ./public $TARGET_SERVER_USER_NAME@$TARGET_SERVER_ADDRESS:/home/headhost/
+                ./public $TARGET_SERVER_USER_NAME@$TARGET_SERVER_ADDRESS:$TARGET_DEPLOYMENT_PATH
             # command: |
             #   ssh -o StrictHostKeyChecking=no \
             #     $TARGET_SERVER_USER_NAME@$TARGET_SERVER_ADDRESS \
