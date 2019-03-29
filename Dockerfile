@@ -13,9 +13,9 @@ COPY package.json /usr/src/headshot_frontend/package.json
 COPY . /usr/src/headshot_frontend
 RUN cd /usr/src/headshot_frontend/
 RUN yarn install
-# RUN yarn run build
+RUN yarn run build
 
 EXPOSE 8080
 
 # start app
-CMD ["yarn", "start:dev"]
+CMD ["yarn", "start"]
