@@ -47,7 +47,7 @@ module.exports = merge(baseConfig, {
         },
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(), // HMR을 사용하기 위한 플러그인
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             title: 'Headshot Printing',
